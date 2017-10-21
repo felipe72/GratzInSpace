@@ -18,28 +18,6 @@ public class LogoController : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("currentScore", 0) != 0) {
 			UpdateRanking ();
 		}
-
-		Tweener tween = CircularMotion (rank [0]);
-		Tweener tween2 = CircularMotion (rank [1]);
-		Tweener tween3 = CircularMotion (rank [2]);
-
-		tween.Goto (2.5f);
-		tween2.Goto(5f);
-	}
-
-	Tweener CircularMotion(Text text){
-		Ease ease = Ease.InOutSine;
-		float time = 4f;
-
-		Tweener tween = text.rectTransform.DOLocalMoveY (-250, time).SetEase(ease).OnComplete(() => {
-			text.rectTransform.DOLocalMoveY (-50, time).SetEase(ease);
-			text.rectTransform.DOScale (Vector3.one * .5f, time).SetEase(ease);
-			text.DOFade (0, time);
-		});
-		text.rectTransform.DOScale (Vector3.one, time).SetEase(ease);
-		text.DOFade (1f, time);
-
-		return tween;
 	}
 
 	void UpdateRanking(){
