@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-
 	private Rigidbody2D rigidbody;
 	public float speed = 8f;
 	public GameObject shoot;
@@ -16,6 +15,8 @@ public class PlayerController : MonoBehaviour {
 	public bool explode = false;
 	public bool exist = false;
 	GameObject shootObject;
+
+	public bool player1;
 
 	void Start () {
 		rigidbody = this.GetComponent<Rigidbody2D>();
@@ -41,9 +42,15 @@ public class PlayerController : MonoBehaviour {
 			explode = true;
 		}
 
-
-		float x = Input.GetAxis("Horizontal");
-		float y = Input.GetAxis("Vertical");
+		float x = 0;
+		float y = 0;
+		if (player1) {
+			x = Input.GetAxis ("Horizontal");
+			y = Input.GetAxis ("Vertical");
+		} else {
+			x = Input.GetAxis ("Horizontal2");
+			y = Input.GetAxis ("Vertical2");
+		}
 		rigidbody.velocity = new Vector2(speed * x, speed * y);
 		if (laser) {
 			if (Input.GetKeyDown (KeyCode.F)) {
@@ -70,5 +77,4 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
-
 }

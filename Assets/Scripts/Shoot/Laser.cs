@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Laser : MonoBehaviour {
-
 	PlayerController player;
 	SpriteRenderer sr;
 
 	// Use this for initialization
 	void Start () {
-		player = FindObjectOfType<PlayerController> ();
 		sr = GetComponent<SpriteRenderer> ();
 	}
 	
@@ -41,5 +39,9 @@ public class Laser : MonoBehaviour {
 				transform.position += pos;
 			}
 		}
+	}
+
+	public void Load(PlayerController _player){
+		player = _player;
 	}
 }

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61249645369816494}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  shoot: {fileID: 0}
+  shoot: {fileID: 1756046586616680, guid: d40504d6b1ad4114191f6257ac243e0d, type: 2}
+  fireRate: 0.2
+  shoots:
+  - {fileID: 1106078539067690, guid: 0c920701d48d208498038542aa592ba2, type: 2}
+  - {fileID: 1173554599495848, guid: 6a7ad9efba8a88044babef8d976fcecd, type: 2}
+  - {fileID: 1756046586616680, guid: d40504d6b1ad4114191f6257ac243e0d, type: 2}
+  - {fileID: 1790415947116532, guid: 269ce70d27a019f4280b3aa13920ae64, type: 2}
+  laser: 1
+  explode: 0
+  exist: 0
 --- !u!212 &212009612532582408
 SpriteRenderer:
   m_ObjectHideFlags: 1
