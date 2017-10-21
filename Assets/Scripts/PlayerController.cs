@@ -52,26 +52,38 @@ public class PlayerController : MonoBehaviour {
 			y = Input.GetAxis ("Vertical2");
 		}
 		rigidbody.velocity = new Vector2(speed * x, speed * y);
+
+		if (player1) {
+			Shoot (KeyCode.K);
+		} else {
+			Shoot (KeyCode.F);
+		}
+
+	}
+
+	void Shoot(KeyCode key){
 		if (laser) {
-			if (Input.GetKeyDown (KeyCode.F)) {
+			if (Input.GetKeyDown (key)) {
 				shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				shootObject.GetComponent<Laser> ().Load (this);
 				lastShoot = Time.time;
-			} else if(Input.GetKeyUp(KeyCode.F)){
+			} else if(Input.GetKeyUp(key)){
 				Destroy(shootObject);
 			}
 		} 
 		else if(explode){
-			if (Input.GetKeyDown (KeyCode.F) && !exist) {
+			if (Input.GetKeyDown (key) && !exist) {
 				shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				shootObject.GetComponent<ExplodeShoot> ().Load (this);
 				lastShoot = Time.time;
 				exist = true;
 			}
-			else if(Input.GetKeyDown (KeyCode.F) && shootObject){
+			else if(Input.GetKeyDown (key) && shootObject){
 				shootObject.GetComponent<ExplodeShoot>().Explode();
 			}
 		}
 		else {
-			if (Input.GetKey (KeyCode.F) && Time.time - lastShoot > fireRate) {
+			if (Input.GetKey (key) && Time.time - lastShoot > fireRate) {
 				Instantiate (shoot, this.transform.position, this.transform.rotation);
 				lastShoot = Time.time;
 			}
