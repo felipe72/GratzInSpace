@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private float dashTimer = 0;
     public float maxDashTimer;
     public int currentAction = 0;
+	public Vector3 shootPosition;
 
     public int maxLifeRess = 5;
     private int currLifeRess = 0;
@@ -49,9 +50,12 @@ public class PlayerController : MonoBehaviour
     GameManager gameManager;
     SpriteRenderer sr;
     bool invul = true;
+	Animator anim;
+
 
     void Start()
     {
+		anim = GetComponent<Animator> ();
         sr = GetComponent<SpriteRenderer>();
         rigidbody = this.GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<GameManager>();
@@ -171,7 +175,11 @@ public class PlayerController : MonoBehaviour
             {
                 vec = new Vector2(x, y);
             }
+
             rigidbody.velocity = vec * speed;
+
+			anim.SetFloat ("velx", vec.x);
+			anim.SetFloat ("vely", vec.y);
 
             if (!player1)
             {
@@ -281,7 +289,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 1;
-                shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				shootObject = Instantiate (shoot, this.transform.position + shootPosition, this.transform.rotation);
 				shootObject.GetComponent<Laser> ().Load (this);
 				lastShoot = Time.time;
             }
@@ -294,9 +302,10 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(key) && !exist)
             {
+				anim.SetTrigger ("shoot");
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 20;
-                shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				shootObject = Instantiate (shoot, this.transform.position+shootPosition, this.transform.rotation);
 				shootObject.GetComponent<ExplodeShoot> ().Load (this);
 				lastShoot = Time.time;
 				exist = true;
@@ -310,9 +319,10 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(key) && Time.time - lastShoot > fireRate)
             {
+				anim.SetTrigger ("shoot");
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 10;
-                shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				shootObject = Instantiate (shoot, this.transform.position+shootPosition, this.transform.rotation);
 				lastShoot = Time.time;
 				if(!shotgun){
 					shootObject.GetComponent<BasicShootController> ().Load (this);
@@ -429,4 +439,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+	void OnDrawGizmosSelected(){
+		Gizmos.DrawSphere (transform.position + shootPosition, .1f);
+	}
 }

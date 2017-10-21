@@ -14,7 +14,7 @@ public class Laser : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (player) {
-			transform.position = player.transform.position;
+			transform.position = player.transform.position + player.shootPosition;
 
 			RaycastHit2D hit;
 			if(player.player1){
@@ -26,7 +26,7 @@ public class Laser : MonoBehaviour {
 			if (hit) {
 				Debug.Log("HIT " + hit.collider.gameObject);
 				var size = transform.localScale;
-				size.x = hit.collider.bounds.center.x - player.transform.position.x;
+				size.x = hit.collider.bounds.center.x - (player.transform.position.x);
 				transform.localScale = size;
 
 				var pos = player.transform.position;
