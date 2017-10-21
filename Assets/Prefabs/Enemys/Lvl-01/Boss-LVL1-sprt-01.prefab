@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212305615398343990}
   - component: {fileID: 95655067857013158}
   m_Layer: 0
-  m_Name: Boss-LVL1
+  m_Name: Boss-LVL1-sprt-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
