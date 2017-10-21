@@ -199,6 +199,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: shoots.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4240040440245158, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -235,12 +240,46 @@ Prefab:
         type: 2}
       propertyPath: shoot
       value: 
-      objectReference: {fileID: 1173554599495848, guid: 6a7ad9efba8a88044babef8d976fcecd,
+      objectReference: {fileID: 1756046586616680, guid: d40504d6b1ad4114191f6257ac243e0d,
         type: 2}
     - target: {fileID: 1318376738483376, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: fireRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: laser
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: shoots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1106078539067690, guid: 0c920701d48d208498038542aa592ba2,
+        type: 2}
+    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: shoots.Array.data[1]
+      value: 
+      objectReference: {fileID: 1173554599495848, guid: 6a7ad9efba8a88044babef8d976fcecd,
+        type: 2}
+    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: shoots.Array.data[2]
+      value: 
+      objectReference: {fileID: 1756046586616680, guid: d40504d6b1ad4114191f6257ac243e0d,
+        type: 2}
+    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: shoots.Array.data[3]
+      value: 
+      objectReference: {fileID: 1790415947116532, guid: 269ce70d27a019f4280b3aa13920ae64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
   m_IsPrefabParent: 0
