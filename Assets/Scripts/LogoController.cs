@@ -19,10 +19,15 @@ public class LogoController : MonoBehaviour {
 			UpdateRanking ();
 		}
 
-		CircularMotion (rank [0]);
+		Tweener tween = CircularMotion (rank [0]);
+		Tweener tween2 = CircularMotion (rank [1]);
+		Tweener tween3 = CircularMotion (rank [2]);
+
+		tween.Goto (2.5f);
+		tween2.Goto(5f);
 	}
 
-	void CircularMotion(Text text){
+	Tweener CircularMotion(Text text){
 		Ease ease = Ease.InOutSine;
 		float time = 4f;
 
@@ -33,6 +38,8 @@ public class LogoController : MonoBehaviour {
 		});
 		text.rectTransform.DOScale (Vector3.one, time).SetEase(ease);
 		text.DOFade (1f, time);
+
+		return tween;
 	}
 
 	void UpdateRanking(){
