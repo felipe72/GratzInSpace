@@ -74,7 +74,6 @@ public class PlayerController : MonoBehaviour
             if (player1)
             {
             	this.gameObject.layer = LayerMask.NameToLayer("Player1");
-                sr.color = gameManager.player1Color;
             }
             else
             {

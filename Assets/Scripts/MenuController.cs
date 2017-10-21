@@ -21,7 +21,7 @@ public class MenuController : MonoBehaviour {
 	void Update(){
 		if (Input.GetKeyDown (KeyCode.F)) {
 			if (gameManager.player1) {
-				LoadingScreenManager.LoadScene (4);
+				LoadingScreenManager.LoadScene (3);
 			} else {
 				gameManager.player1 = true;
 				curtains [0].rectTransform.DOMoveY (curtains [0].rectTransform.position.y + 2000, 1);

@@ -24,7 +24,6 @@ public class Laser : MonoBehaviour {
 				hit = Physics2D.Raycast (player.transform.position, Vector2.right, 10000, 1 << (LayerMask.NameToLayer ("Enemy") | LayerMask.NameToLayer ("Player1")));	
 			}
 			if (hit) {
-				Debug.Log("HIT " + hit.collider.gameObject);
 				var size = transform.localScale;
 				size.x = hit.collider.bounds.center.x - (player.transform.position.x);
 				transform.localScale = size;
