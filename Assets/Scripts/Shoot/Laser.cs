@@ -16,9 +16,15 @@ public class Laser : MonoBehaviour {
 		if (player) {
 			transform.position = player.transform.position;
 
-			RaycastHit2D hit = Physics2D.Raycast (player.transform.position, Vector2.right, 10000, 1 << LayerMask.NameToLayer ("Enemy") | 1 << LayerMask.NameToLayer ("Player"));
-
+			RaycastHit2D hit;
+			if(player.player1){
+				hit = Physics2D.Raycast (player.transform.position, Vector2.right, 10000, 1 << (LayerMask.NameToLayer ("Enemy") | LayerMask.NameToLayer ("Player2")));
+			}
+			else{
+				hit = Physics2D.Raycast (player.transform.position, Vector2.right, 10000, 1 << (LayerMask.NameToLayer ("Enemy") | LayerMask.NameToLayer ("Player1")));	
+			}
 			if (hit) {
+				Debug.Log("HIT " + hit.collider.gameObject);
 				var size = transform.localScale;
 				size.x = hit.collider.bounds.center.x - player.transform.position.x;
 				transform.localScale = size;
@@ -26,9 +32,13 @@ public class Laser : MonoBehaviour {
 				var pos = player.transform.position;
 				pos.x += size.x / 2;
 				transform.position = pos;
-
-				EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController> ();
-				enemy.Die ();
+				if(hit.collider.gameObject.tag == "Player"){
+					hit.collider.gameObject.GetComponent<PlayerController> ().Combo(2);
+				}
+				else{
+					EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController> ();
+					enemy.Die ();	
+				}
 			} else {
 				var scale = transform.localScale;
 				scale.x = 1000;

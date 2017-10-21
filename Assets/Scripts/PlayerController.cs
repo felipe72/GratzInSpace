@@ -67,16 +67,26 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-
             if (player1)
             {
+            	this.gameObject.layer = LayerMask.NameToLayer("Player1");
                 sr.color = gameManager.player1Color;
             }
             else
             {
+            	this.gameObject.layer = LayerMask.NameToLayer("Player2");
                 sr.color = gameManager.player2Color;
             }
         }
+
+         if (player1)
+            {
+            	this.gameObject.layer = LayerMask.NameToLayer("Player1");
+            }
+            else
+            {
+            	this.gameObject.layer = LayerMask.NameToLayer("Player2");
+            }
 
         StartCoroutine(CantDie());
         combo1 = new KeySequenceController();
@@ -129,21 +139,31 @@ public class PlayerController : MonoBehaviour
 			if(currentAction == 1){
 				Vector2 nextPosition = new Vector2(this.transform.position.x + 0.1f, this.transform.position.y);
 				this.transform.position = nextPosition;
+				if(this.transform.position.x > 10f){
+					currentAction = 2;
+				}
+			}
+			if(currentAction == 2){
+				Vector2 nextPosition = new Vector2(this.transform.position.x - 0.1f, this.transform.position.y);
+				this.transform.position = nextPosition;
+				if(this.transform.position.x < 0f){
+					currentAction = 0;
+				}
 			}
 			float y = 0;
 			if (!player1) {
-				if(currentAction != 1){
+				if(currentAction == 0){
 					x = Input.GetAxis ("Horizontal");
 				}
 				y = Input.GetAxis ("Vertical");
 			} else {
-				if(currentAction != 1){
+				if(currentAction == 0){
 					x = Input.GetAxis ("Horizontal2");
 				}
 				y = Input.GetAxis ("Vertical2");
 			}
             Vector2 vec = Vector2.zero;
-            if (new Vector2(x, y).magnitude > 1 && currentAction != 1)
+            if (new Vector2(x, y).magnitude > 1 && currentAction == 0)
             {
                 vec = new Vector2(x, y).normalized;
             }
@@ -355,19 +375,29 @@ public class PlayerController : MonoBehaviour
 			shootObject.GetComponent<BasicShootController> ().Load (this);
 			shootObject.transform.localScale *= 3f;
 		}
+		else if(action == 1){
+			shootObject = Instantiate (shoots[1], this.transform.position, this.transform.rotation);
+			foreach (Transform child in shootObject.transform){
+				child.gameObject.GetComponent<BasicShootController> ().Load (this);
+			}
+		}
+		else if(action == 2){
+			shootObject = Instantiate (shoots[2], this.transform.position, this.transform.rotation);
+			shootObject.GetComponent<Laser> ().Load (this);
+			var scale = shootObject.transform.localScale;
+			scale.y *= 3;
+			shootObject.transform.localScale = scale;
+			Destroy(shootObject, 0.5f);
+		}
 		else if(action == 3){
 			shootObject = Instantiate (shoots[3], this.transform);
 			shootObject.transform.localScale *= 5;
 			shootObject.GetComponent<ExplodeShoot>().speed = 0f;
 			currentAction = 1;
+			Destroy(shootObject, 3f);
 			//this.rigidbody.AddForce(new Vector2(10f, 0));
 		}
-		else if(action == 1){
-			shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
-			foreach (Transform child in shootObject.transform){
-				child.gameObject.GetComponent<BasicShootController> ().Load (this);
-			}
-		}
+		
 	}
 
     public void Die()

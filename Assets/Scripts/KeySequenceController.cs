@@ -19,8 +19,6 @@ public class KeySequenceController : MonoBehaviour
 
     public bool CheckP1()
     {
-        Debug.Log(mKeyListP1[0] + " " + mKeyListP1[1] + " " + mKeyListP1[2]);
-        Debug.Log("COUNT " + mList.Count);
         if (Time.time > timeLastButtonPressed + allowedTimeBetweenmKeyList)
         {
             if (mCurrentIndex < mKeyListP1.Count && mList.Count > mCurrentIndex)
@@ -30,7 +28,6 @@ public class KeySequenceController : MonoBehaviour
                         timeLastButtonPressed = Time.time;
                         mCurrentIndex++;
                 }else{
-                    Debug.Log("ENTROU NESSE ELSE?");
                     //mList.Clear();
                     return false;
                 }
@@ -53,8 +50,6 @@ public class KeySequenceController : MonoBehaviour
 
     public bool CheckP2()
     {
-        Debug.Log(mKeyListP2[0] + " " + mKeyListP2[1] + " " + mKeyListP2[2]);
-        Debug.Log("COUNT " + mList.Count);
         if (Time.time > timeLastButtonPressed + allowedTimeBetweenmKeyList)
         {
             if (mCurrentIndex < mKeyListP2.Count && mList.Count > mCurrentIndex)
@@ -64,7 +59,6 @@ public class KeySequenceController : MonoBehaviour
                         timeLastButtonPressed = Time.time;
                         mCurrentIndex++;
                 }else{
-                    Debug.Log("ENTROU NESSE ELSE?");
                     //mList.Clear();
                     return false;
                 }
@@ -86,7 +80,6 @@ public class KeySequenceController : MonoBehaviour
     }
 
     private List<KeyCode> RandomSequenceP1(){
-        Debug.Log("ENTROU AQUI");
         List<List<KeyCode>> randomSequence = new List<List<KeyCode>>();
         randomSequence.Add(new List<KeyCode>(){KeyCode.D, KeyCode.D, KeyCode.D});
         randomSequence.Add(new List<KeyCode>(){KeyCode.W, KeyCode.D, KeyCode.S});
@@ -97,7 +90,6 @@ public class KeySequenceController : MonoBehaviour
         return sequenceChosen;
     }
     private List<KeyCode> RandomSequenceP2(){
-        Debug.Log("ENTROU AQUI");
         List<List<KeyCode>> randomSequence = new List<List<KeyCode>>();
         randomSequence.Add(new List<KeyCode>(){KeyCode.RightArrow, KeyCode.RightArrow, KeyCode.RightArrow});
         randomSequence.Add(new List<KeyCode>(){KeyCode.UpArrow, KeyCode.RightArrow, KeyCode.DownArrow});

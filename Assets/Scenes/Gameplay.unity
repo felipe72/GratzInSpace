@@ -1027,35 +1027,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
         type: 2}
-      propertyPath: player2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: player1
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1318376738483376, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
-      propertyPath: m_Name
-      value: Player 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212009612532582408, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212009612532582408, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.76551723
-      objectReference: {fileID: 0}
-    - target: {fileID: 212009612532582408, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
       propertyPath: specialBarSlider
       value: 
       objectReference: {fileID: 1336373551}
@@ -1064,10 +1035,19 @@ Prefab:
       propertyPath: sequenceKeysP2
       value: 
       objectReference: {fileID: 1438369475}
+    - target: {fileID: 1318376738483376, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
+      propertyPath: m_Name
+      value: Player 2
+      objectReference: {fileID: 0}
     - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
         type: 2}
-      propertyPath: maxDashTimer
-      value: 5
+      propertyPath: player1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212009612532582408, guid: ed0c254abbf40b6489e3c9b637851856,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.43448275
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
