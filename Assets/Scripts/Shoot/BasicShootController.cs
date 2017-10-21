@@ -30,5 +30,9 @@ public class BasicShootController : MonoBehaviour {
 			enemy.Die ();
 			Destroy(this.gameObject);
 		}
+		PlayerController player = collider.gameObject.GetComponent<PlayerController>();
+		if(collider.gameObject.tag == "Player" && !player.isActive){
+			player.setRestoreLife();
+		}
 	}
 }

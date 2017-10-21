@@ -8,7 +8,7 @@ public class KeySequenceController : MonoBehaviour
     public List<KeyCode> mKeyListP1;
     public List<KeyCode> mKeyListP2;
     public int mCurrentIndex = 0;
-    public float allowedTimeBetweenmKeyList = 0.2f; //tweak as needed
+    public float allowedTimeBetweenmKeyList = 0.1f; //tweak as needed
     private float timeLastButtonPressed;
     public KeySequenceController()
     {
