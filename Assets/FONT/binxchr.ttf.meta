@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6663736be72590b4187f1fcc5b67f9d0
+timeCreated: 1508623604
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Binary X CHR BRK
+  fontNames:
+  - Binary X CHR BRK
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

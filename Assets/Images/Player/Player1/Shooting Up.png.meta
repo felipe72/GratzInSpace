@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: bb0fd13a697e0e04a8a942da28f3e112
-timeCreated: 1508610720
+guid: 2c5593aab9127b543a32856f89aeaddc
+timeCreated: 1508618085
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Iddle_0
-    21300002: Iddle_1
-    21300004: Iddle_2
-    21300006: Iddle_3
-    21300008: Iddle_4
+    21300000: Shooting Up_0
+    21300002: Shooting Up_1
+    21300004: Shooting Up_2
+    21300006: Shooting Up_3
+    21300008: Shooting Up_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -83,7 +83,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Iddle_0
+      name: Shooting Up_0
       rect:
         serializedVersion: 2
         x: 0
@@ -97,7 +97,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Iddle_1
+      name: Shooting Up_1
       rect:
         serializedVersion: 2
         x: 80
@@ -111,7 +111,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Iddle_2
+      name: Shooting Up_2
       rect:
         serializedVersion: 2
         x: 160
@@ -125,7 +125,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Iddle_3
+      name: Shooting Up_3
       rect:
         serializedVersion: 2
         x: 240
@@ -139,7 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Iddle_4
+      name: Shooting Up_4
       rect:
         serializedVersion: 2
         x: 320

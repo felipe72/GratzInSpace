@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class LogoController : MonoBehaviour {
+
+	public Text[] rank;
 
 	// Use this for initialization
 	void Start () {
