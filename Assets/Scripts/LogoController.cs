@@ -11,7 +11,7 @@ public class LogoController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.K)) {
+		if (Input.GetKeyDown (KeyCode.K) || Input.GetKeyDown(KeyCode.F)) {
 			LoadingScreenManager.LoadScene (2);
 		}
 	}

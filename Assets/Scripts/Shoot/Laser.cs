@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Laser : MonoBehaviour {
-	PlayerController player;
+	public PlayerController player;
 	SpriteRenderer sr;
 
 	// Use this for initialization
@@ -27,8 +27,8 @@ public class Laser : MonoBehaviour {
 				pos.x += size.x / 2;
 				transform.position = pos;
 
-				Destroy (hit.collider.gameObject, 0.2f);
-				hit.collider.gameObject.GetComponent<EnemyController> ().Die ();
+				EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController> ();
+				enemy.Die ();
 			} else {
 				var scale = transform.localScale;
 				scale.x = 1000;

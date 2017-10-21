@@ -17,11 +17,40 @@ public class PlayerController : MonoBehaviour {
 	GameObject shootObject;
 
 	public bool player1;
+	GameManager gameManager;
+	SpriteRenderer sr;
+	bool invul = true;
 
 	void Start () {
+		sr = GetComponent<SpriteRenderer> ();
 		rigidbody = this.GetComponent<Rigidbody2D>();
+		gameManager = FindObjectOfType<GameManager> ();
+		if (gameManager) {
+			gameManager.started = true;
+
+			if (player1 && !gameManager.player1) {
+				Destroy (gameObject);
+			} else if (!player1 && !gameManager.player2) {
+				Destroy (gameObject);
+			}
+
+			if (player1) {
+				sr.color = gameManager.player1Color;
+			} else {
+				sr.color = gameManager.player2Color;
+			}
+		}
+
+		StartCoroutine (CantDie());
 	}
 	
+	IEnumerator CantDie(){
+		yield return new WaitForSeconds (1f);
+
+		invul = false;
+
+	}
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			shoot = shoots [0];
@@ -44,16 +73,22 @@ public class PlayerController : MonoBehaviour {
 
 		float x = 0;
 		float y = 0;
-		if (player1) {
+		if (!player1) {
 			x = Input.GetAxis ("Horizontal");
 			y = Input.GetAxis ("Vertical");
 		} else {
 			x = Input.GetAxis ("Horizontal2");
 			y = Input.GetAxis ("Vertical2");
 		}
-		rigidbody.velocity = new Vector2(speed * x, speed * y);
+		Vector2 vec = Vector2.zero;
+		if (new Vector2 (x, y).magnitude > 1) {
+			vec = new Vector2 (x, y).normalized;
+		} else {
+			vec = new Vector2 (x, y);
+		}
+		rigidbody.velocity = vec * speed;
 
-		if (player1) {
+		if (!player1) {
 			Shoot (KeyCode.K);
 		} else {
 			Shoot (KeyCode.F);
@@ -86,6 +121,20 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKey (key) && Time.time - lastShoot > fireRate) {
 				Instantiate (shoot, this.transform.position, this.transform.rotation);
 				lastShoot = Time.time;
+			}
+		}
+	}
+
+	public void Die(){
+		if (!invul) {
+			Destroy (gameObject);
+		}
+	}
+
+	void OnDestroy(){
+		foreach (var x in FindObjectsOfType<Laser>()) {
+			if (x.player == this) {
+				Destroy (x.gameObject);
 			}
 		}
 	}

@@ -20,6 +20,8 @@ public class EnemySpawnner : MonoBehaviour {
 			TwoWave ();
 		} else if (Input.GetKeyDown (KeyCode.P)) {
 			FullRandom ();
+		} else if (Input.GetKeyDown (KeyCode.U)) {
+			WallOfEnemies (3);
 		}
 
 		/*if(Time.time - lastTime > 0.3f){
@@ -87,6 +89,16 @@ public class EnemySpawnner : MonoBehaviour {
 		});
 	}
 
+	void WallOfEnemies(int howLess){
+		print ("oi");
+		for (int i = -4; i < 5; i+=2) {
+			if (howLess <= 0 || Random.Range (0f, 1f) > .5f) {
+				Instantiate (enemy, new Vector3 (transform.position.x, i, 0), Quaternion.identity);
+				howLess--;
+			} 
+		}
+	}
+
 	void FullRandom(){
 		float fodace = 0f;
 		float lastTime2 = 0f;
@@ -102,7 +114,7 @@ public class EnemySpawnner : MonoBehaviour {
 		}
 
 		tween1 = DOTween.To (x => fodace = x, -5, 5, 2).SetLoops (-1, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate( () => {
-			posY1 = Random.Range (-5f, 5f);
+			posY1 = Random.Range (-5, 5);
 			TrySpawn(ref lastTime2, 1);
 		});
 

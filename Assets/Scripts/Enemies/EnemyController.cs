@@ -19,11 +19,13 @@ public class EnemyController : MonoBehaviour {
 
 	public void Die(){
 		isDead = true;
+		Destroy (gameObject, .2f);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
 		if(collider.gameObject.tag == "Player"){
-			Destroy(collider.gameObject);
+			PlayerController player = collider.gameObject.GetComponent<PlayerController> ();
+			player.Die ();
 		}
 	}
 }

@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slope: 0
+  timeLife: 0.3
+  speed: 0.2
 --- !u!114 &114175064753857972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slope: -0.05
+  timeLife: 0.3
+  speed: 0.2
 --- !u!114 &114510488318428170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slope: 0.05
+  timeLife: 0.3
+  speed: 0.2
 --- !u!212 &212191989264808958
 SpriteRenderer:
   m_ObjectHideFlags: 1

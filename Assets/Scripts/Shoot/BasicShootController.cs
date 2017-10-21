@@ -6,17 +6,28 @@ public class BasicShootController : MonoBehaviour {
 	
 	public float slope = 0f;
 
+	public float timeLife;
+	public float speed;
+
+	void Start(){
+		StartCoroutine (destroyAfterSeconds ());
+	}
+
 	void Update () {
-		Vector2 nextPosition = new Vector2(this.transform.position.x + 0.1f, this.transform.position.y + slope);
+		Vector2 nextPosition = new Vector2(this.transform.position.x + speed, this.transform.position.y + slope);
 		this.transform.position = nextPosition;
-		if(this.transform.position.x > 30f){
-			Destroy(this.gameObject);
-		}
+	}
+
+	IEnumerator destroyAfterSeconds(){
+		yield return new WaitForSeconds (timeLife);
+
+		Destroy (gameObject);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
 		if(collider.gameObject.tag == "Enemy"){
-			Destroy(collider.gameObject);
+			EnemyController enemy = collider.gameObject.GetComponent<EnemyController> ();
+			enemy.Die ();
 			Destroy(this.gameObject);
 		}
 	}
