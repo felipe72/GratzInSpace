@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 prevVelocity;
     public bool laser = false;
     public bool explode = false;
+    public bool shotgun = false;
     public bool exist = false;
     GameObject shootObject;
     private KeySequenceController combo1;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public Text sequenceKeysP2;
     private float dashTimer = 0;
     public float maxDashTimer;
+    public int currentAction = 0;
 
     public int maxLifeRess = 5;
     private int currLifeRess = 0;
@@ -100,46 +102,48 @@ public class PlayerController : MonoBehaviour
         }
         if (isActive)
         {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				shoot = shoots [0];
+				laser = false;
+				explode = false;
+				shotgun = false;
+			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				shoot = shoots [1];
+				laser = false;
+				explode = false;
+				shotgun = true;
+			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				shoot = shoots [2];
+				laser = true;
+				explode = false;
+				shotgun = false;
+			}
+			else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				shoot = shoots [3];
+				laser = false;
+				explode = true;
+				shotgun = false;
+			}
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                shoot = shoots[0];
-                laser = false;
-                explode = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                shoot = shoots[1];
-                laser = false;
-                explode = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                shoot = shoots[2];
-                laser = true;
-                explode = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                shoot = shoots[3];
-                laser = false;
-                explode = true;
-            }
-            float x = 0;
-            float y = 0;
-            if (!player1 && isActive)
-            {
-                x = Input.GetAxis("Horizontal");
-                y = Input.GetAxis("Vertical");
-            }
-            else if (isActive)
-            {
-                x = Input.GetAxis("Horizontal2");
-                y = Input.GetAxis("Vertical2");
-
-            }
+			float x = 0;
+			if(currentAction == 1){
+				Vector2 nextPosition = new Vector2(this.transform.position.x + 0.1f, this.transform.position.y);
+				this.transform.position = nextPosition;
+			}
+			float y = 0;
+			if (!player1) {
+				if(currentAction != 1){
+					x = Input.GetAxis ("Horizontal");
+				}
+				y = Input.GetAxis ("Vertical");
+			} else {
+				if(currentAction != 1){
+					x = Input.GetAxis ("Horizontal2");
+				}
+				y = Input.GetAxis ("Vertical2");
+			}
             Vector2 vec = Vector2.zero;
-            if (new Vector2(x, y).magnitude > 1)
+            if (new Vector2(x, y).magnitude > 1 && currentAction != 1)
             {
                 vec = new Vector2(x, y).normalized;
             }
@@ -257,9 +261,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 1;
-                shootObject = Instantiate(shoot, this.transform.position, this.transform.rotation);
-                shootObject.GetComponent<Laser>().Load(this);
-                lastShoot = Time.time;
+                shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				shootObject.GetComponent<Laser> ().Load (this);
+				lastShoot = Time.time;
             }
             else if (Input.GetKeyUp(key))
             {
@@ -272,10 +276,10 @@ public class PlayerController : MonoBehaviour
             {
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 20;
-                shootObject = Instantiate(shoot, this.transform.position, this.transform.rotation);
-                shootObject.GetComponent<ExplodeShoot>().Load(this);
-                lastShoot = Time.time;
-                exist = true;
+                shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				shootObject.GetComponent<ExplodeShoot> ().Load (this);
+				lastShoot = Time.time;
+				exist = true;
             }
             else if (Input.GetKeyDown(key) && shootObject)
             {
@@ -288,8 +292,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 10;
-                Instantiate(shoot, this.transform.position, this.transform.rotation);
-                lastShoot = Time.time;
+                shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+				lastShoot = Time.time;
+				if(!shotgun){
+					shootObject.GetComponent<BasicShootController> ().Load (this);
+				}
+				else{
+					foreach (Transform child in shootObject.transform){
+						child.gameObject.GetComponent<BasicShootController> ().Load (this);
+					}
+				}
             }
         }
     }
@@ -336,6 +348,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+	public void Combo(int action){
+		if(action == 0){
+			shootObject = Instantiate (shoots[0], this.transform.position, this.transform.rotation);
+			shootObject.GetComponent<BasicShootController> ().Load (this);
+			shootObject.transform.localScale *= 3f;
+		}
+		else if(action == 3){
+			shootObject = Instantiate (shoots[3], this.transform);
+			shootObject.transform.localScale *= 5;
+			shootObject.GetComponent<ExplodeShoot>().speed = 0f;
+			currentAction = 1;
+			//this.rigidbody.AddForce(new Vector2(10f, 0));
+		}
+		else if(action == 1){
+			shootObject = Instantiate (shoot, this.transform.position, this.transform.rotation);
+			foreach (Transform child in shootObject.transform){
+				child.gameObject.GetComponent<BasicShootController> ().Load (this);
+			}
+		}
+	}
+
     public void Die()
     {
         if (!invul)
@@ -365,6 +399,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
 }
-

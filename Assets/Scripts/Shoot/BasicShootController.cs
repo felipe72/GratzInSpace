@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicShootController : MonoBehaviour {
 	
 	public float slope = 0f;
+	PlayerController player;
 
 	public float timeLife;
 	public float speed;
@@ -30,9 +31,18 @@ public class BasicShootController : MonoBehaviour {
 			enemy.Die ();
 			Destroy(this.gameObject);
 		}
-		PlayerController player = collider.gameObject.GetComponent<PlayerController>();
 		if(collider.gameObject.tag == "Player" && !player.isActive){
 			player.setRestoreLife();
 		}
+		if(collider.gameObject.tag == "Player" && collider.gameObject != player.gameObject){
+			int combo = 0;
+			if(player.shotgun) combo = 1;
+			collider.gameObject.GetComponent<PlayerController> ().Combo(combo);
+			Destroy(this.gameObject);
+		}
+	}
+
+	public void Load(PlayerController _player){
+		player = _player;
 	}
 }

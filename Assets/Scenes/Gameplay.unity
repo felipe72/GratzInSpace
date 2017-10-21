@@ -297,7 +297,7 @@ RectTransform:
   m_GameObject: {fileID: 115056123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.035587188, y: 0.035587188, z: 0.035587188}
+  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
   m_Children:
   - {fileID: 649115940}
   - {fileID: 2086590231}
@@ -697,7 +697,7 @@ RectTransform:
   m_GameObject: {fileID: 407000367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.035587188, y: 0.035587188, z: 0.035587188}
+  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
   m_Children:
   - {fileID: 259412437}
   - {fileID: 261987900}
@@ -1397,36 +1397,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
         type: 2}
-      propertyPath: player2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: player1
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212009612532582408, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.99264705
-      objectReference: {fileID: 0}
-    - target: {fileID: 212009612532582408, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212009612532582408, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.9652639
-      objectReference: {fileID: 0}
-    - target: {fileID: 61249645369816494, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
       propertyPath: specialBarSlider
       value: 
       objectReference: {fileID: 1504617397}
@@ -1435,16 +1405,6 @@ Prefab:
       propertyPath: sequenceKeysP1
       value: 
       objectReference: {fileID: 2047246098}
-    - target: {fileID: 50928297571381544, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114355128671647018, guid: ed0c254abbf40b6489e3c9b637851856,
-        type: 2}
-      propertyPath: maxDashTimer
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
   m_IsPrefabParent: 0

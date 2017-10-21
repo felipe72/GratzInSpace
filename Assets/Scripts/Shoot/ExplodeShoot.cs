@@ -5,9 +5,9 @@ using DG.Tweening;
 
 public class ExplodeShoot : MonoBehaviour {
 	PlayerController player;
-
+	public float speed = 0.1f;
 	void Update () {
-		Vector2 nextPosition = new Vector2(this.transform.position.x + 0.1f, this.transform.position.y);
+		Vector2 nextPosition = new Vector2(this.transform.position.x + speed, this.transform.position.y);
 		this.transform.position = nextPosition;
 		if(this.transform.position.x > 30f){
 			Destroy(this.gameObject);
@@ -25,6 +25,11 @@ public class ExplodeShoot : MonoBehaviour {
 		if(player && collider.gameObject.tag == "Enemy" && !player.exist){
 			EnemyController enemy = collider.gameObject.GetComponent<EnemyController> ();
 			enemy.Die ();
+		}
+		if(collider.gameObject.tag == "Player" && collider.gameObject != player.gameObject){
+			collider.gameObject.GetComponent<PlayerController> ().Combo(3);
+			player.exist = false;
+			Destroy(this.gameObject);
 		}
 	}
 
