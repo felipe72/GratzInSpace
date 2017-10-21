@@ -235,7 +235,7 @@ Prefab:
         type: 2}
       propertyPath: shoot
       value: 
-      objectReference: {fileID: 1106078539067690, guid: fc5cb819ba1612d46af63df3b47b5e7d,
+      objectReference: {fileID: 1173554599495848, guid: 6a7ad9efba8a88044babef8d976fcecd,
         type: 2}
     - target: {fileID: 1318376738483376, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
       propertyPath: m_TagString
