@@ -17,3 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: eca75f843131eee45867b0d6591a36e4
+  - enabled: 1
+    path: Assets/Scenes/Felipe.unity
+    guid: f5bf1c6680d22b54a9cb8db8371b6804
+  - enabled: 1
+    path: Assets/Scenes/ChooseNick.unity
+    guid: 1b4043382c1d4b14a847f3096376407b
