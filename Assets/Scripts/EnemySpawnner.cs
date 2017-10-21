@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class EnemySpawnner : MonoBehaviour {
 
-	public GameObject enemy;
+	public GameObject[] enemy;
 
 	float posY1;
 	float posY2;
@@ -34,17 +34,17 @@ public class EnemySpawnner : MonoBehaviour {
 
 	void TrySpawn(ref float lastTime, int i){
 		if (i == 1) {
-			if (Time.time - lastTime > 0.3f) {
+			if (Time.time - lastTime > 2f) {
 				var pos = this.transform.position;
 				pos.y = posY1;
-				Instantiate (enemy, pos, this.transform.rotation);
+				Instantiate (enemy[Random.Range(0, enemy.Length)], pos + new Vector3(10,0,0), this.transform.rotation);
 				lastTime = Time.time;
 			}
 		} else {
-			if (Time.time - lastTime > 0.3f) {
+			if (Time.time - lastTime > 2f) {
 				var pos = this.transform.position;
 				pos.y = posY2;
-				Instantiate (enemy, pos, this.transform.rotation);
+				Instantiate (enemy[Random.Range(0, enemy.Length)], pos + new Vector3(10,0,0), this.transform.rotation);
 				lastTime = Time.time;
 			}
 		}
@@ -93,7 +93,7 @@ public class EnemySpawnner : MonoBehaviour {
 		print ("oi");
 		for (int i = -4; i < 5; i+=2) {
 			if (howLess <= 0 || Random.Range (0f, 1f) > .5f) {
-				Instantiate (enemy, new Vector3 (transform.position.x, i, 0), Quaternion.identity);
+				Instantiate (enemy[Random.Range(0, enemy.Length)], new Vector3 (transform.position.x, i, 0) + new Vector3(10,0,0), Quaternion.identity);
 				howLess--;
 			} 
 		}

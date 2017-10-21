@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4584417988835852}
   - component: {fileID: 212028700769086408}
-  - component: {fileID: 114540498110793566}
   - component: {fileID: 61158894501230374}
   - component: {fileID: 50974137690492256}
   - component: {fileID: 95306228002290070}
+  - component: {fileID: 114651754219924406}
   m_Layer: 8
   m_Name: BallEye-02
   m_TagString: Enemy
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1748519541622746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.54, y: 0.82, z: 0}
+  m_LocalPosition: {x: 15.29, y: 3.079671, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1748519541622746}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a13fe55cb77cb554c9bb97c9a669f5e6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b1e5c5a4134b3f4c85d8b6f780397b6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -106,7 +106,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114540498110793566
+--- !u!114 &114651754219924406
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -114,9 +114,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1748519541622746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2d1c3a7338ba834c9c174de7932daf0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c00b0e2ec5afac47bf96a96cbcec670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot: {fileID: 1106078539067690, guid: c1efe38890e08c84199c802b1679ca1c, type: 2}
 --- !u!212 &212028700769086408
 SpriteRenderer:
   m_ObjectHideFlags: 1

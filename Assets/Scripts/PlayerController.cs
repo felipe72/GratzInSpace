@@ -407,6 +407,7 @@ public class PlayerController : MonoBehaviour
             isActive = false;
             sr.sprite = spriteDead;
             rigidbody.velocity = new Vector2(0, 0);
+            rigidbody.isKinematic = true;
             currLifeRess = 0;
 
             //Destroy(gameObject);

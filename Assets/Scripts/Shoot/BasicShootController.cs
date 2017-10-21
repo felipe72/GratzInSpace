@@ -26,10 +26,15 @@ public class BasicShootController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
-		if(collider.gameObject.tag == "Enemy"){
+		if(collider.gameObject.tag == "EnemyStasis"){
 			EnemyController enemy = collider.gameObject.GetComponent<EnemyController> ();
 			enemy.Die ();
 			Destroy(this.gameObject);
+		}
+		if(collider.gameObject.tag == "Enemy"){
+			EnemyShooterController enemy = collider.gameObject.GetComponent<EnemyShooterController> ();
+			enemy.Die ();
+			//Destroy(this.gameObject);
 		}
 		if(collider.gameObject.tag == "Player" && !player.isActive){
 			player.setRestoreLife();
