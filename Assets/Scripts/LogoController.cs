@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class LogoController : MonoBehaviour {
+
+	public Text[] rank;
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +18,21 @@ public class LogoController : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("currentScore", 0) != 0) {
 			UpdateRanking ();
 		}
+
+		CircularMotion (rank [0]);
+	}
+
+	void CircularMotion(Text text){
+		Ease ease = Ease.InOutSine;
+		float time = 4f;
+
+		Tweener tween = text.rectTransform.DOLocalMoveY (-250, time).SetEase(ease).OnComplete(() => {
+			text.rectTransform.DOLocalMoveY (-50, time).SetEase(ease);
+			text.rectTransform.DOScale (Vector3.one * .5f, time).SetEase(ease);
+			text.DOFade (0, time);
+		});
+		text.rectTransform.DOScale (Vector3.one, time).SetEase(ease);
+		text.DOFade (1f, time);
 	}
 
 	void UpdateRanking(){
