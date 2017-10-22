@@ -36,8 +36,10 @@ public class EnemyController : MonoBehaviour {
 				RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, 10000, 1 << LayerMask.NameToLayer("Player1") | 1 << LayerMask.NameToLayer("Player2"));
 
 				if (hit && !once) {
+					print ("oi");
 					once = true;
-					Instantiate (bullet, transform);
+					GameObject go = Instantiate (bullet, transform.position, bullet.transform.rotation);
+					go.transform.SetParent (transform);
 					StartCoroutine (cooldown ());
 				}
 			} else if(turret){

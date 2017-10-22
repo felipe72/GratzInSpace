@@ -25,22 +25,25 @@ public class Laser : MonoBehaviour {
 			}
 			if (hit) {
 				var size = transform.localScale;
-				size.x = hit.collider.bounds.center.x - (player.transform.position.x);
+				size.x = hit.collider.bounds.center.x - (player.transform.position.x + player.shootPosition.x);
 				transform.localScale = size;
 
-				var pos = player.transform.position;
+				var pos = player.transform.position+ player.shootPosition;
 				pos.x += size.x / 2;
 				transform.position = pos;
 				if(hit.collider.gameObject.tag == "Player"){
 					hit.collider.gameObject.GetComponent<PlayerController> ().Combo(2);
 				}
 				else{
-					EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController> ();
+					EnemyShooterController enemy = hit.collider.gameObject.GetComponent<EnemyShooterController> ();
 					if (enemy) {
-						enemy.Die ();	
-					} else {
-						EnemyShooterController _enemy = hit.collider.gameObject.GetComponent<EnemyShooterController> ();
+						enemy.Die ();
+					} else if (hit.collider.gameObject.GetComponent<EnemyController> ()) {
+						EnemyController _enemy = hit.collider.gameObject.GetComponent<EnemyController> ();
 						_enemy.Die ();
+					} else if (hit.collider.gameObject.GetComponent<Boss> ()) {
+						Boss boss = hit.collider.gameObject.GetComponent<Boss> ();
+						boss.ReceiveDamage (damage);
 					}
 				}
 			} else {
@@ -55,7 +58,12 @@ public class Laser : MonoBehaviour {
 		}
 	}
 
-	public void Load(PlayerController _player){
+	int damage = 1;
+
+	public void Load(PlayerController _player, bool check = false){
+		if (check) {
+			damage = 3;
+		}
 		player = _player;
 	}
 }

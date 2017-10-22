@@ -401,7 +401,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else if(action == 2){
 			shootObject = Instantiate (shoots[2], this.transform.position + shootPosition, this.transform.rotation);
-			shootObject.GetComponent<Laser> ().Load (this);
+			shootObject.GetComponent<Laser> ().Load (this, true);
 			var scale = shootObject.transform.localScale;
 			scale.y *= 3;
 			shootObject.transform.localScale = scale;

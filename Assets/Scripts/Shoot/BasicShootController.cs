@@ -25,29 +25,34 @@ public class BasicShootController : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	void OnTriggerEnter2D(Collider2D collider){
-		if(collider.gameObject.tag == "EnemyStasis"){
-			EnemyController enemy = collider.gameObject.GetComponent<EnemyController> ();
+	void OnTriggerEnter2D(Collider2D col){
+		if(col.gameObject.tag == "EnemyStasis"){
+			EnemyController enemy = col.gameObject.GetComponent<EnemyController> ();
 			enemy.Die ();
 			Destroy(this.gameObject);
 		}
-		if(collider.gameObject.tag == "Enemy"){
-			EnemyShooterController enemy = collider.gameObject.GetComponent<EnemyShooterController> ();
+		if(col.gameObject.tag == "Enemy"){
+			print ("boi");
+			EnemyShooterController enemy = col.gameObject.GetComponent<EnemyShooterController> ();
 			if (enemy) {
 				enemy.Die ();
-			} else {
-				EnemyController _enemy = collider.gameObject.GetComponent<EnemyController> ();
+			} else if(col.gameObject.GetComponent<EnemyController> ()){
+				EnemyController _enemy = col.gameObject.GetComponent<EnemyController> ();
 				_enemy.Die ();
+			} else if(col.gameObject.GetComponent<Boss> ()){
+				print ("macaco");
+				Boss boss = col.gameObject.GetComponent<Boss> ();
+				boss.ReceiveDamage (10);
 			}
 			//Destroy(this.gameObject);
 		}
-		if(collider.gameObject.tag == "Player" && !player.isActive){
+		if(col.gameObject.tag == "Player" && !player.isActive){
 			player.setRestoreLife();
 		}
-		if(collider.gameObject.tag == "Player" && collider.gameObject != player.gameObject){
+		if(col.gameObject.tag == "Player" && col.gameObject != player.gameObject){
 			int combo = 0;
 			if(player.shotgun) combo = 1;
-			collider.gameObject.GetComponent<PlayerController> ().Combo(combo);
+			col.gameObject.GetComponent<PlayerController> ().Combo(combo);
 			Destroy(this.gameObject);
 		}
 	}

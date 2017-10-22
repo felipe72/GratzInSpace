@@ -23,8 +23,16 @@ public class ExplodeShoot : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider){
 		if(player && collider.gameObject.tag == "Enemy" && !player.exist){
-			EnemyController enemy = collider.gameObject.GetComponent<EnemyController> ();
-			enemy.Die ();
+			EnemyShooterController enemy = collider.gameObject.GetComponent<EnemyShooterController> ();
+			if (enemy) {
+				enemy.Die ();
+			} else if (collider.gameObject.GetComponent<EnemyController> ()) {
+				EnemyController _enemy = collider.gameObject.GetComponent<EnemyController> ();
+				_enemy.Die ();
+			} else if (collider.gameObject.GetComponent<Boss> ()) {
+				Boss boss = collider.gameObject.GetComponent<Boss> ();
+				boss.ReceiveDamage (50);
+			}
 		}
 		if(collider.gameObject.tag == "Player" && collider.gameObject != player.gameObject){
 			collider.gameObject.GetComponent<PlayerController> ().Combo(3);

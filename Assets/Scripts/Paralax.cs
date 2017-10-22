@@ -52,7 +52,7 @@ public class Paralax : MonoBehaviour {
 
 		int j = 0;
 		foreach (var x in parallaxes) {
-			if (!stopped || j < 3) {
+			if (!stopped || j < 2) {
 				Vector2 nextPosition = new Vector2 (x.go.rectTransform.localPosition.x + x.speed, x.go.rectTransform.localPosition.y);
 				x.go.rectTransform.localPosition = nextPosition;
 
@@ -95,7 +95,12 @@ public class Paralax : MonoBehaviour {
 		foreach (var enemy in FindObjectsOfType<EnemyShooterController>()) {
 			enemy.Die ();
 		}
+	}
 
-		parallaxes [4].speed = 0;
+	public void Continue(){
+		stopped = false;
+		once = false;
+		bossGo = null;
+		bossShip = -1;
 	}
 }
