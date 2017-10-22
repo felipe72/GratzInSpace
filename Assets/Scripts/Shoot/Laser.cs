@@ -40,11 +40,11 @@ public class Laser : MonoBehaviour {
 				}
 			} else {
 				var scale = transform.localScale;
-				scale.x = 1000;
+				scale.x = 500;
 				transform.localScale = scale;
 
 				var pos = Vector3.zero;
-				pos.x = 500;
+				pos.x = 250;
 				transform.position += pos;
 			}
 		}
