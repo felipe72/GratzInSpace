@@ -13,23 +13,23 @@ public class EnemySpawnner : MonoBehaviour {
 	Tweener tween1;
 	Tweener tween2;
 
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.I)) {
-			OneWave ();
-		} else if (Input.GetKeyDown (KeyCode.O)) {
-			TwoWave ();
-		} else if (Input.GetKeyDown (KeyCode.P)) {
-			FullRandom ();
-		} else if (Input.GetKeyDown (KeyCode.U)) {
-			WallOfEnemies (3);
-		}
+	private float lastTime = 0f;
 
-		/*if(Time.time - lastTime > 0.3f){
-			var pos = this.transform.position;
-			pos.y = posY;
-			Instantiate(enemy, pos, this.transform.rotation);
+	void Update () {
+
+		if(Time.time - lastTime > 5f){
 			lastTime = Time.time;
-		}*/
+			int r = Random.Range(1,5);
+			if (r == 1) {
+				OneWave ();
+			} else if (r == 2) {
+				TwoWave ();
+			} else if (r == 3) {
+				FullRandom ();
+			} else if (r == 4) {
+				WallOfEnemies (3);
+			}
+		}
 	}
 
 	void TrySpawn(ref float lastTime, int i){
@@ -63,10 +63,10 @@ public class EnemySpawnner : MonoBehaviour {
 			tween2 = null;
 		}
 
-		tween1 = DOTween.To (x => posY1 = x, 0, 4, 2).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
+		tween1 = DOTween.To (x => posY1 = x, 0f, 4f, 2f).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
 			TrySpawn(ref lastTime1, 1);
 		});
-		tween2 = DOTween.To (x => posY2 = x, 0, -3, 2).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
+		tween2 = DOTween.To (x => posY2 = x, 0f, -3f, 2f).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
 			TrySpawn(ref lastTime2, 2);
 		});;
 	}
@@ -84,7 +84,7 @@ public class EnemySpawnner : MonoBehaviour {
 			tween2 = null;
 		}
 
-		tween1 = DOTween.To (x => posY1 = x, -3, 4, 2).SetLoops (-1, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate( () => {
+		tween1 = DOTween.To (x => posY1 = x, -3f, 4f, 2f).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate( () => {
 			TrySpawn(ref lastTime2, 1);
 		});
 	}
