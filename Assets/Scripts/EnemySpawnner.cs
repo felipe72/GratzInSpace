@@ -63,10 +63,10 @@ public class EnemySpawnner : MonoBehaviour {
 			tween2 = null;
 		}
 
-		tween1 = DOTween.To (x => posY1 = x, 0, 5, 2).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
+		tween1 = DOTween.To (x => posY1 = x, 0, 4, 2).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
 			TrySpawn(ref lastTime1, 1);
 		});
-		tween2 = DOTween.To (x => posY2 = x, 0, -5, 2).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
+		tween2 = DOTween.To (x => posY2 = x, 0, -3, 2).SetLoops (2, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate(() => {
 			TrySpawn(ref lastTime2, 2);
 		});;
 	}
@@ -84,7 +84,7 @@ public class EnemySpawnner : MonoBehaviour {
 			tween2 = null;
 		}
 
-		tween1 = DOTween.To (x => posY1 = x, -5, 5, 2).SetLoops (-1, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate( () => {
+		tween1 = DOTween.To (x => posY1 = x, -3, 4, 2).SetLoops (-1, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate( () => {
 			TrySpawn(ref lastTime2, 1);
 		});
 	}
@@ -113,7 +113,7 @@ public class EnemySpawnner : MonoBehaviour {
 			tween2 = null;
 		}
 
-		tween1 = DOTween.To (x => fodace = x, -5, 5, 2).SetLoops (-1, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate( () => {
+		tween1 = DOTween.To (x => fodace = x, -3, 4, 2).SetLoops (-1, LoopType.Yoyo).SetEase (Ease.InOutQuad).OnUpdate( () => {
 			posY1 = Random.Range (-5, 5);
 			TrySpawn(ref lastTime2, 1);
 		});

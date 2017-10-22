@@ -1597,9 +1597,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1580915272592658, guid: ed9a4d6eb71630040a6bc128d6557adf, type: 2}
+  - {fileID: 1748519541622746, guid: a3540e8ef1a85164bbd5a8a3deefbd1a, type: 2}
 --- !u!1 &1438369473
 GameObject:
   m_ObjectHideFlags: 0

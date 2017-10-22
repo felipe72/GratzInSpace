@@ -36,7 +36,12 @@ public class Laser : MonoBehaviour {
 				}
 				else{
 					EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController> ();
-					enemy.Die ();	
+					if (enemy) {
+						enemy.Die ();	
+					} else {
+						EnemyShooterController _enemy = hit.collider.gameObject.GetComponent<EnemyShooterController> ();
+						_enemy.Die ();
+					}
 				}
 			} else {
 				var scale = transform.localScale;

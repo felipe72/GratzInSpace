@@ -382,10 +382,12 @@ public class PlayerController : MonoBehaviour
 		if(action == 0){
 			shootObject = Instantiate (shoots[0], this.transform.position + shootPosition, this.transform.rotation);
 			shootObject.GetComponent<BasicShootController> ().Load (this);
+			shootObject.layer = LayerMask.NameToLayer ("NAOCOMPLAYER");
 			shootObject.transform.localScale *= 3f;
 		}
 		else if(action == 1){
-			shootObject = Instantiate (shoots[1], this.transform.position, this.transform.rotation);
+			shootObject = Instantiate (shoots[1], this.transform.position + shootPosition, this.transform.rotation);
+			shootObject.layer = LayerMask.NameToLayer ("NAOCOMPLAYER");
 			foreach (Transform child in shootObject.transform){
 				child.gameObject.GetComponent<BasicShootController> ().Load (this);
 			}

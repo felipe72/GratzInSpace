@@ -79,6 +79,6 @@ public class EnemyShooterController : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        Destroy(gameObject);
+        Destroy(gameObject, .2f);
     }
 }
