@@ -35,16 +35,18 @@ public class Paralax : MonoBehaviour {
 			spaces [i] = parallaxes[i].go.rectTransform;
 			ship [i] = parallaxes [i + 4].go.rectTransform;
 		}
+
+		StartCoroutine (Spawn ());
 	}
 
-	void Update(){
-		if (Input.GetKeyDown (KeyCode.Q)) {
-			bossGo = Instantiate (boss, ship [lastShip].position, Quaternion.identity).GetComponent<Boss>();
-			bossGo.transform.SetParent (ship [lastShip]);
-			bossGo.transform.localPosition -= new Vector3 (136, 532);
+	IEnumerator Spawn(){
+		yield return new WaitForSeconds (2);
 
-			bossShip = lastShip;
-		}
+		bossGo = Instantiate (boss, ship [lastShip].position, Quaternion.identity).GetComponent<Boss>();
+		bossGo.transform.SetParent (ship [lastShip]);
+		bossGo.transform.localPosition -= new Vector3 (136, 532);
+
+		bossShip = lastShip;
 	}
 
 	void FixedUpdate(){

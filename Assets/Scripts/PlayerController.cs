@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     public bool player1;
     GameManager gameManager;
     SpriteRenderer sr;
-    bool invul = false;
+    public bool invul = false;
 	Animator anim;
 
 
@@ -118,6 +118,10 @@ public class PlayerController : MonoBehaviour
         if (currLifeRess >= 5)
         {
 			anim.SetTrigger ("endHelp");
+			if (co != null) {
+				StopCoroutine (co);
+				co = null;
+			}
             isActive = true;
             currLifeRess = 0;
         }
@@ -423,19 +427,33 @@ public class PlayerController : MonoBehaviour
 		
 	}
 
-    public void Die()
-    {
-        if (!invul)
-        {
-			
+	Coroutine co = null;
 
+	IEnumerator waitSeconds(){
+		yield return new WaitForSeconds (2);
+
+		if (isActive == false) {
+			gameManager.Load (this);
+			anim.SetTrigger ("endHelp");
+			gameObject.SetActive (false);
+			if (player1) {
+				gameManager.player1 = false;
+			} else {
+				gameManager.player2 = false;
+			}
+		}
+	}
+
+    public void Die(){
+        if (!invul){
+			co = StartCoroutine (waitSeconds ());
             isActive = false;
             sr.sprite = spriteDead;
             rigidbody.velocity = new Vector2(0, 0);
             rigidbody.isKinematic = true;
             currLifeRess = 0;
 			anim.SetTrigger ("help");
-            //Destroy(gameObject);
+			//Destroy(gameObject);
 
 			foreach (var player in FindObjectsOfType<PlayerController>()) {
 				if (player.isActive)

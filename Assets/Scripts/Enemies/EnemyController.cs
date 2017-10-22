@@ -80,9 +80,11 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void Die(){
-		FindObjectOfType<ScoreManager> ().AddScore (100);
-		isDead = true;
-		Destroy (gameObject, .2f);
+		if (!isDead) {
+			FindObjectOfType<ScoreManager> ().AddScore (100);
+			isDead = true;
+			Destroy (gameObject, .2f);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
