@@ -361,7 +361,8 @@ MonoBehaviour:
   laserCooldown: 15
   laserUptime: 6
   eyePos: {x: 1.65, y: 7.38}
-  life: 0
+  meuclipe: {fileID: 8300000, guid: dade687696c7f814ea81a74350d303d0, type: 3}
+  life: 1000
 --- !u!114 &114918999852879880
 MonoBehaviour:
   m_ObjectHideFlags: 1

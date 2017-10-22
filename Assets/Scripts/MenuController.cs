@@ -32,7 +32,7 @@ public class MenuController : MonoBehaviour {
 				LoadingScreenManager.LoadScene (3);
 			} else {
 				gameManager.player2 = true;
-				curtains [1].rectTransform.DOMoveY (curtains [1].rectTransform.position.y - 2000, 1);
+				curtains [1].rectTransform.DOMoveY (curtains [1].rectTransform.position.y + 2000, 1);
 			}
 		}
 	}

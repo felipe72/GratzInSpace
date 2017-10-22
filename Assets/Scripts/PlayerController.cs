@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public float fireRate = 0.2f;
     private float lastShoot = 0f;
 
-    public GameObject[] shoots;
-
+    public List<GameObject> shoots;
+	public GameObject[] dropShoots;
     public Sprite spriteAlive;
     public Sprite spriteDead;
 
@@ -78,7 +78,11 @@ public class PlayerController : MonoBehaviour
         combo1 = new KeySequenceController();
         combo2 = new KeySequenceController();
         keys = new List<KeyCode>();
-
+		dropShoots = new GameObject[4];
+		dropShoots [0] = shoots [0];
+		laser = false;
+		explode = false;
+		shotgun = false;
 		if (gameManager)
 		{
 			gameManager.started = true;
@@ -127,23 +131,23 @@ public class PlayerController : MonoBehaviour
         }
         if (isActive)
         {
-			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			if (Input.GetKeyDown (KeyCode.Alpha1) && dropShoots[0] != null) {
 				shoot = shoots [0];
 				laser = false;
 				explode = false;
 				shotgun = false;
-			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			} else if (Input.GetKeyDown (KeyCode.Alpha2) && dropShoots[1] != null) {
 				shoot = shoots [1];
 				laser = false;
 				explode = false;
 				shotgun = true;
-			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			} else if (Input.GetKeyDown (KeyCode.Alpha3) && dropShoots[2] != null) {
 				shoot = shoots [2];
 				laser = true;
 				explode = false;
 				shotgun = false;
 			}
-			else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			else if (Input.GetKeyDown (KeyCode.Alpha4) && dropShoots[3] != null) {
 				shoot = shoots [3];
 				laser = false;
 				explode = true;
@@ -395,20 +399,20 @@ public class PlayerController : MonoBehaviour
 
 
 	public void Combo(int action){
-		if(action == 0){
+		if(action == 0 && shoots[0]){
 			shootObject = Instantiate (shoots[0], this.transform.position + shootPosition, this.transform.rotation);
 			shootObject.GetComponent<BasicShootController> ().Load (this);
 			shootObject.layer = LayerMask.NameToLayer ("NAOCOMPLAYER");
 			shootObject.transform.localScale *= 3f;
 		}
-		else if(action == 1){
+		else if(action == 1 && shoots[1]){
 			shootObject = Instantiate (shoots[1], this.transform.position + shootPosition, this.transform.rotation);
 			shootObject.layer = LayerMask.NameToLayer ("NAOCOMPLAYER");
 			foreach (Transform child in shootObject.transform){
 				child.gameObject.GetComponent<BasicShootController> ().Load (this);
 			}
 		}
-		else if(action == 2){
+		else if(action == 2 && shoots[2]){
 			shootObject = Instantiate (shoots[2], this.transform.position + shootPosition, this.transform.rotation);
 			shootObject.GetComponent<Laser> ().Load (this, true);
 			var scale = shootObject.transform.localScale;
@@ -416,7 +420,7 @@ public class PlayerController : MonoBehaviour
 			shootObject.transform.localScale = scale;
 			Destroy(shootObject, 0.5f);
 		}
-		else if(action == 3){
+		else if(action == 3 && shoots[3]){
 			shootObject = Instantiate (shoots[3], this.transform);
 			shootObject.transform.localScale *= 5;
 			shootObject.GetComponent<ExplodeShoot>().speed = 0f;
@@ -444,13 +448,48 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D coll)
+	{
+		if (coll.gameObject.tag == "PowerUP")
+		{
+			Debug.Log(coll.gameObject.name);
+			GameObject g = shoots.Find(x => (x.gameObject.name + "1(Clone)") == coll.gameObject.name);
+			Debug.Log(g.name);
+			if (g.name == "Laser")
+			{
+				shoot = shoots[2];
+				laser = true;
+				explode = false;
+				shotgun = false;
+				dropShoots[2] = shoots[2];
+			}
+			if (g.name == "ExplodeShoot")
+			{
+				shoot = shoots[3];
+				laser = false;
+				explode = true;
+				shotgun = false;
+				dropShoots[3] = shoots[3];
+			}
+			if (g.name == "TripleShoot")
+			{
+				shoot = shoots[1];
+				laser = false;
+				explode = false;
+				shotgun = true;
+				dropShoots[1] = shoots[1];
+			}
+			Destroy (coll.gameObject);
+		}
+	}
+
     public void Die(){
         if (!invul){
 			co = StartCoroutine (waitSeconds ());
             isActive = false;
             sr.sprite = spriteDead;
             rigidbody.velocity = new Vector2(0, 0);
-            rigidbody.isKinematic = true;
+            //rigidbody.isKinematic = true;
             currLifeRess = 0;
 			anim.SetTrigger ("help");
 			//Destroy(gameObject);

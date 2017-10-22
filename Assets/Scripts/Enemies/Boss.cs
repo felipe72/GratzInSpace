@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour {
 	public float laserCooldown;
 	public float laserUptime;
 	public Vector2 eyePos;
-
+	public AudioClip meuclipe;
 	Animator anim;
 	Animator childAnim;
 	bool dead;
@@ -27,7 +27,8 @@ public class Boss : MonoBehaviour {
 	public void Initialize(){
 		anim.SetTrigger ("start");
 		childAnim.SetTrigger ("open");
-
+		FindObjectOfType<MusicController> ().GetComponent<AudioSource> ().clip = meuclipe;
+		FindObjectOfType<MusicController> ().GetComponent<AudioSource> ().Play ();
 		StartCoroutine (cooldown ());
 	}
 

@@ -118,6 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot: {fileID: 1106078539067690, guid: c1efe38890e08c84199c802b1679ca1c, type: 2}
+  powerUps:
+  - {fileID: 1542451469058626, guid: 2176cd732c6ed274a9ec6214c26c086f, type: 2}
+  - {fileID: 1544172450052172, guid: de056c9fa67c85045aa5ca168f79154f, type: 2}
+  - {fileID: 1662193353487096, guid: 542c6d59d911ad446b9dee68a2306c97, type: 2}
+  explosao: {fileID: 1920805516297196, guid: 61a5173bf5f85e347a1fc4060013f6db, type: 2}
 --- !u!212 &212028700769086408
 SpriteRenderer:
   m_ObjectHideFlags: 1

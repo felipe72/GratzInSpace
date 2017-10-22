@@ -13,8 +13,12 @@ public class Paralax : MonoBehaviour {
 
 	public GameObject boss;
 
+	public GameObject[] toDisable;
+	public Image[] toFadeIn;
+
 	public IParallax[] parallaxes;
 	bool stopped = false;
+	public Sprite sprite;
 
 	int bossShip = -1;
 	bool once = false;
@@ -40,7 +44,7 @@ public class Paralax : MonoBehaviour {
 	}
 
 	IEnumerator Spawn(){
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (20);
 
 		bossGo = Instantiate (boss, ship [lastShip].position, Quaternion.identity).GetComponent<Boss>();
 		bossGo.transform.SetParent (ship [lastShip]);
@@ -100,6 +104,24 @@ public class Paralax : MonoBehaviour {
 	}
 
 	public void Continue(){
+		for (int i = 4; i < parallaxes.Length; i++) {
+			var para = parallaxes [i];
+			para.go.DOFade (0, 5).OnComplete (() => {
+				para.go.sprite = sprite;
+				para.go.DOFade(1f, 5);
+			});
+		}
+
+		foreach (var x in toDisable) {
+			foreach (var y in x.GetComponentsInChildren<SpriteRenderer>()) {
+				y.DOFade (0, 5f);
+			}
+		}
+
+		foreach (var x in toFadeIn) {
+			x.DOFade (1, 5f);
+		}
+
 		stopped = false;
 		once = false;
 		bossGo = null;

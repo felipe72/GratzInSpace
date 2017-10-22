@@ -11,12 +11,16 @@ public class EnemyController : MonoBehaviour {
 	public bool Launcher;
 
 	public GameObject bullet;
+	public List<GameObject> powerUps; 
 
 	bool once = false;
 
 	public bool turret;
 
 	SpriteRenderer child;
+
+
+	public GameObject explosao;
 
 	bool goingBack;
 
@@ -79,11 +83,33 @@ public class EnemyController : MonoBehaviour {
 		once = false;
 	}
 
+
+
+	public bool DropChance(){
+		bool res = false;
+		float a = Random.Range(0f, 1f);
+		if(a <= .3f)
+			res = true;
+		return res;
+	}
+
+	private GameObject RandomPowerUps(){
+		GameObject chosen = powerUps[Random.Range(0, powerUps.Count)];
+		return chosen;
+	}
+
 	public void Die(){
 		if (!isDead) {
 			FindObjectOfType<ScoreManager> ().AddScore (100);
 			isDead = true;
+			Instantiate (explosao, transform.position, Quaternion.identity);
 			Destroy (gameObject, .2f);
+		}
+
+		if(DropChance()){
+			GameObject go = RandomPowerUps();
+			Instantiate(go , this.transform.position, Quaternion.identity);
+
 		}
 	}
 

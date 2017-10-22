@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemyShooterController : MonoBehaviour
 {
 
@@ -11,6 +10,9 @@ public class EnemyShooterController : MonoBehaviour
     private GameObject shootObject;
     //public float fireRate = 10f;
     float timeStop = 0f;
+	public List<GameObject> powerUps;
+
+	public GameObject explosao;
 
     float maxTimeStop = 1f;
     private float lastShoot = 0f;
@@ -76,10 +78,30 @@ public class EnemyShooterController : MonoBehaviour
 
     public void Die()
     {
-		if (isDead) {
+		if (!isDead) {
+			Instantiate (explosao, transform.position, Quaternion.identity);
 			FindObjectOfType<ScoreManager> ().AddScore (200);
 			isDead = true;
 			Destroy (gameObject, .2f);
 		}
+
+		if(DropChance()){
+			GameObject go = RandomPowerUps();
+			Instantiate(go , this.transform.position, Quaternion.identity);
+
+		}
     }
+
+	public bool DropChance(){
+		bool res = false;
+		float a = Random.Range(0f, 1f);
+		if(a <= .3f)
+			res = true;
+		return res;
+	}
+
+	private GameObject RandomPowerUps(){
+		GameObject chosen = powerUps[Random.Range(0, powerUps.Count)];
+		return chosen;
+	}
 }
