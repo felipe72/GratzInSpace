@@ -776,6 +776,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  canSpawn: 1
 --- !u!1 &1453239812
 GameObject:
   m_ObjectHideFlags: 0
