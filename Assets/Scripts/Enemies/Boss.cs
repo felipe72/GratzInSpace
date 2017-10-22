@@ -110,7 +110,6 @@ public class Boss : MonoBehaviour {
 
 	public void KillObj(){
 		FindObjectOfType<ScoreManager> ().AddScore (1000);
-
 		spawner.canSpawn = true;
 		FindObjectOfType<Paralax> ().Continue ();
 

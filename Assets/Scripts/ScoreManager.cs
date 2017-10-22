@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
@@ -9,18 +10,33 @@ public class ScoreManager : MonoBehaviour {
 
 	public Text score;
 
+	public Text[] images;
+
+	public Image endgame;
+
+	GameManager gameManager;
+
+	void Update(){
+		if (gameManager) {
+			images [1].enabled = !gameManager.player1;
+			images [0].enabled = !gameManager.player2;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
+		gameManager = FindObjectOfType<GameManager> ();
 		UpdateScore ();
 	}
 
 	public void End(){
 		PlayerPrefs.SetInt ("currentScore", IScore);
-
-		CheckRanking ();
+		endgame.gameObject.SetActive (true);
+		StartCoroutine(CheckRanking ());
 	}
 
-	void CheckRanking(){
+	IEnumerator CheckRanking(){
+		yield return new WaitForSeconds (2f);
 		int index = 10;
 
 		for (int i = 9; i >= 0; i--) {
@@ -38,7 +54,7 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	void UpdateScore(){
-		score.text = "Score: <size=80>" + IScore.ToString () + "</size>";
+		score.text = IScore.ToString ();
 	}
 
 	public void AddScore(int amount){

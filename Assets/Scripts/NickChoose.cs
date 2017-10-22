@@ -22,16 +22,16 @@ public class NickChoose : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetAxis("Horizontal") < -.5f || Input.GetAxis("Horizontal2") < -.5f && Time.time - lasttime > .1f) {
+		if (Input.GetAxis("Horizontal") < -.5f || Input.GetAxis("Horizontal2") < -.5f && Time.time - lasttime > .25f) {
 			lasttime = Time.time;
 			index = (index == 0 ? 2 : (index - 1));
-		} else if (Input.GetAxis("Horizontal") > .5f || Input.GetAxis("Horizontal2") > .5f && Time.time - lasttime > .1f) {
+		} else if (Input.GetAxis("Horizontal") > .5f || Input.GetAxis("Horizontal2") > .5f && Time.time - lasttime > .25f) {
 			lasttime = Time.time;
 			index = (index == 2 ? 0 : (index + 1));
 		}
 
 
-		if (Input.GetAxis("Vertical") > .5f || Input.GetAxis("Vertical2") > .5f && Time.time - lasttime > .1f) {
+		if (Input.GetAxis("Vertical") > .5f || Input.GetAxis("Vertical2") > .5f && Time.time - lasttime > .25f) {
 			lasttime = Time.time;
 			int _index = s.IndexOf(letters [index].text [0]);
 			print (_index);
@@ -39,7 +39,7 @@ public class NickChoose : MonoBehaviour {
 			_index += 1;
 			_index %= 26;
 			letters [index].text = s [_index].ToString();
-		} else if (Input.GetAxis("Vertical") < -.5f || Input.GetAxis("Vertical2") < -.5f && Time.time - lasttime > .1f) {
+		} else if (Input.GetAxis("Vertical") < -.5f || Input.GetAxis("Vertical2") < -.5f && Time.time - lasttime > .25f) {
 			lasttime = Time.time;
 			int _index = s.IndexOf(letters [index].text [0]);
 			_index -= 1;
@@ -47,7 +47,7 @@ public class NickChoose : MonoBehaviour {
 			letters [index].text = s [_index].ToString();
 		}
 
-		if (Input.GetKeyDown(KeyCode.Joystick1Button0)|| Input.GetKeyDown(KeyCode.Joystick2Button0) && Time.time - lasttime > .1f) {
+		if (Input.GetKeyDown(KeyCode.Joystick1Button0)|| Input.GetKeyDown(KeyCode.Joystick2Button0) && Time.time - lasttime > .25f) {
 			lasttime = Time.time;
 			PlayerPrefs.SetString ("currentName", letters [0].text + letters [1].text + letters [2].text);
 			LoadingScreenManager.LoadScene (0);
