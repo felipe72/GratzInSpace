@@ -55,32 +55,15 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+		shoot = shoots [0];
+		laser = false;
+		explode = false;
+		shotgun = false;
+
 		anim = GetComponent<Animator> ();
         sr = GetComponent<SpriteRenderer>();
         rigidbody = this.GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<GameManager>();
-        if (gameManager)
-        {
-            gameManager.started = true;
-
-            if (player1 && !gameManager.player1)
-            {
-                Destroy(gameObject);
-            }
-            else if (!player1 && !gameManager.player2)
-            {
-                Destroy(gameObject);
-            }
-            if (player1)
-            {
-            	this.gameObject.layer = LayerMask.NameToLayer("Player1");
-            }
-            else
-            {
-            	this.gameObject.layer = LayerMask.NameToLayer("Player2");
-                sr.color = gameManager.player2Color;
-            }
-        }
 
          if (player1)
             {
@@ -95,6 +78,30 @@ public class PlayerController : MonoBehaviour
         combo1 = new KeySequenceController();
         combo2 = new KeySequenceController();
         keys = new List<KeyCode>();
+
+		if (gameManager)
+		{
+			gameManager.started = true;
+
+			if (player1 && !gameManager.player1)
+			{
+				gameManager.Load (this);
+				gameObject.SetActive (false);
+			}
+			else if (!player1 && !gameManager.player2)
+			{
+				gameManager.Load (this);
+				gameObject.SetActive (false);
+			}
+			if (player1)
+			{
+				this.gameObject.layer = LayerMask.NameToLayer("Player1");
+			}
+			else
+			{
+				this.gameObject.layer = LayerMask.NameToLayer("Player2");
+			}
+		}
     }
 
     IEnumerator CantDie()

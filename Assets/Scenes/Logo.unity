@@ -1348,13 +1348,8 @@ MonoBehaviour:
   player1: 0
   player2: 0
   started: 0
-  player: {fileID: 1318376738483376, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
-  player1Color:
-    serializedVersion: 2
-    rgba: 4294312189
-  player2Color:
-    serializedVersion: 2
-    rgba: 4278240255
+  player1Go: {fileID: 1318376738483376, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
+  player2Go: {fileID: 1094094771403990, guid: d92f4ac5bfc597b47b8749eab38c1ae0, type: 2}
 --- !u!4 &1919936589
 Transform:
   m_ObjectHideFlags: 0

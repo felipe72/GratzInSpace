@@ -13,8 +13,6 @@ public class MenuController : MonoBehaviour {
 	void Start(){
 		gameManager = FindObjectOfType<GameManager> ();
 		gameManager.started = false;
-
-		players [1].color = gameManager.player2Color;
 	}
 
 	void Update(){

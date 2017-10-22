@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour {
 
 	public bool started = false;
 
-	public GameObject player;
+	public GameObject player1Go;
+	public GameObject player2Go;
 
-	public Color32 player1Color = new Color32(253, 0, 246, 255);
-	public Color32 player2Color = new Color32(255, 195, 0, 255);
+	PlayerController player;
 
 	// Use this for initialization
 	void Start () {
@@ -23,13 +23,17 @@ public class GameManager : MonoBehaviour {
 		if (started) {
 			if (Input.GetKeyDown (KeyCode.F) && !player1) {
 				player1 = true;
-				PlayerController _player = Instantiate (player, Vector3.zero, Quaternion.identity).GetComponent<PlayerController> ();
-				_player.player1 = true;
+				player.gameObject.SetActive (true);
+				player.player1 = true;
 			} else if (Input.GetKeyDown (KeyCode.K) && !player2) {
 				player2 = true;
-				PlayerController _player = Instantiate (player, Vector3.zero, Quaternion.identity).GetComponent<PlayerController> ();
-				_player.player1 = false;
+				player.gameObject.SetActive (true);
+				player.player1 = false;
 			}
 		}
+	}
+
+	public void Load(PlayerController _player){
+		player = _player;
 	}
 }
