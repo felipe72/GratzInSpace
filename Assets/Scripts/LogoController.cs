@@ -10,9 +10,12 @@ public class LogoController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+
 		if (PlayerPrefs.GetInt ("once", 0) == 0) {
 			PlayerPrefs.SetInt ("once", 1);
 			StarterRanks ();
+
 		}
 
 		if (PlayerPrefs.GetInt ("currentScore", 0) != 0) {

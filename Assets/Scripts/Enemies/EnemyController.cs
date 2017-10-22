@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour {
 	public bool DropChance(){
 		bool res = false;
 		float a = Random.Range(0f, 1f);
-		if(a <= .3f)
+		if(a <= .05f)
 			res = true;
 		return res;
 	}
@@ -104,13 +104,15 @@ public class EnemyController : MonoBehaviour {
 			isDead = true;
 			Instantiate (explosao, transform.position, Quaternion.identity);
 			Destroy (gameObject, .2f);
+
+			if(DropChance()){
+				GameObject go = RandomPowerUps();
+				Instantiate(go , this.transform.position, Quaternion.identity);
+
+			}
 		}
 
-		if(DropChance()){
-			GameObject go = RandomPowerUps();
-			Instantiate(go , this.transform.position, Quaternion.identity);
 
-		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){

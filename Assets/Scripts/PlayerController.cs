@@ -329,7 +329,11 @@ public class PlayerController : MonoBehaviour
             }
 			else if ((Input.GetKeyDown(_key) || Input.GetKeyDown(key)) && shootObject)
             {
-                shootObject.GetComponent<ExplodeShoot>().Explode();
+				if (shootObject) {
+					if (shootObject.GetComponent<ExplodeShoot> ()) {
+						shootObject.GetComponent<ExplodeShoot> ().Explode ();
+					}
+				}
             }
         }
         else

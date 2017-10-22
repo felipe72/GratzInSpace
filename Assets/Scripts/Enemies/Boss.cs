@@ -79,6 +79,7 @@ public class Boss : MonoBehaviour {
 
 	public void ReceiveDamage(int damage){
 		if (canTake) {
+			
 			life -= damage;
 
 			if (life <= 0) {

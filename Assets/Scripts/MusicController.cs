@@ -6,7 +6,9 @@ public class MusicController : MonoBehaviour {
 	private static MusicController _instance;
 	// Use this for initialization
 	void Awake () {
-		if (_instance) {
+		DontDestroyOnLoad (gameObject);
+
+		if (!_instance) {
 			_instance = this;
 		} else {
 			Destroy (this.gameObject);
