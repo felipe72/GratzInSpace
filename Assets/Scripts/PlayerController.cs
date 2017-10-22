@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
 			if(currentAction == 1){
 				Vector2 nextPosition = new Vector2(this.transform.position.x + 0.1f, this.transform.position.y);
 				this.transform.position = nextPosition;
-				if(this.transform.position.x > 10f){
+				if(this.transform.position.x > 7f){
 					currentAction = 2;
 				}
 			}
@@ -380,7 +380,9 @@ public class PlayerController : MonoBehaviour
 
 	public void Combo(int action){
 		if(action == 0){
-			shootObject = Instantiate (shoots[0], this.transform.position, this.transform.rotation);
+			Vector2 nextPosition = this.transform.position;
+			nextPosition.x += 1.5f;
+			shootObject = Instantiate (shoots[0], nextPosition, this.transform.rotation);
 			shootObject.GetComponent<BasicShootController> ().Load (this);
 			shootObject.transform.localScale *= 3f;
 		}
