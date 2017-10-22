@@ -42,7 +42,11 @@ public class BasicEnemyShootController : MonoBehaviour {
 		yield return new WaitForSeconds (timeLife);
 
 		timeLife = origLife;
-		gameObject.SetActive (false);
+		if (diagonal || vertical) {
+			Destroy (gameObject);
+		} else {
+			gameObject.SetActive (false);
+		}
 	}
 
 	public void Load(Vector3 v){
@@ -54,8 +58,11 @@ public class BasicEnemyShootController : MonoBehaviour {
 			PlayerController player = collider.gameObject.GetComponent<PlayerController> ();
 			player.Die ();
 			timeLife = origLife;
-
-			this.gameObject.SetActive(false);
+			if (diagonal || vertical) {
+				Destroy (gameObject);
+			} else {
+				this.gameObject.SetActive (false);
+			}
 		}
 	}
 }

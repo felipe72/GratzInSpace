@@ -422,18 +422,28 @@ public class PlayerController : MonoBehaviour
     {
         if (!invul)
         {
+			
+
             isActive = false;
             sr.sprite = spriteDead;
             rigidbody.velocity = new Vector2(0, 0);
             rigidbody.isKinematic = true;
             currLifeRess = 0;
-
+			anim.SetTrigger ("help");
             //Destroy(gameObject);
+
+			/*foreach (var player in FindObjectsOfType<PlayerController>()) {
+				if (player.isActive)
+					return;
+			}
+
+			FindObjectOfType<ScoreManager> ().End ();*/
         }
     }
 
     public void setRestoreLife()
     {
+		anim.SetTrigger ("endHelp");
         currLifeRess += 1;
         Debug.Log(currLifeRess);
     }

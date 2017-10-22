@@ -14,12 +14,10 @@ public class ScoreManager : MonoBehaviour {
 		UpdateScore ();
 	}
 
-	void Update(){
-		if (Input.GetKeyDown (KeyCode.M)) {
-			PlayerPrefs.SetInt ("currentScore", IScore);
+	public void End(){
+		PlayerPrefs.SetInt ("currentScore", IScore);
 
-			CheckRanking ();
-		}
+		CheckRanking ();
 	}
 
 	void CheckRanking(){
