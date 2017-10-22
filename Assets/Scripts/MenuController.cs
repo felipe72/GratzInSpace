@@ -14,7 +14,6 @@ public class MenuController : MonoBehaviour {
 		gameManager = FindObjectOfType<GameManager> ();
 		gameManager.started = false;
 
-		players [0].color = gameManager.player1Color;
 		players [1].color = gameManager.player2Color;
 	}
 

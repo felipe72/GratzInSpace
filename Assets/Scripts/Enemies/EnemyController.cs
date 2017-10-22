@@ -24,7 +24,6 @@ public class EnemyController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider){
 		if(collider.gameObject.tag == "Player"){
-			Debug.Log("COLIDIIIIIIIIU COM O PLAYER!");
 			PlayerController player = collider.gameObject.GetComponent<PlayerController> ();
 			player.Die ();
 		}

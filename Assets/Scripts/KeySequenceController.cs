@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeySequenceController : MonoBehaviour
+public class KeySequenceController
 {
 	public List<KeyCode> mList;
     public List<KeyCode> mKeyListP1;
