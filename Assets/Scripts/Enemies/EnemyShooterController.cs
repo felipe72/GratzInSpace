@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyShooterController : MonoBehaviour
 {
 
+	BulletPool bulletPool;
     bool isDead = false;
     public GameObject shoot;
     private GameObject shootObject;
@@ -16,9 +17,8 @@ public class EnemyShooterController : MonoBehaviour
     private float shootingCD =0.5f;
     bool stop = false;
     // Use this for initialization
-    void Start()
-    {
-
+    void Start(){
+		bulletPool = FindObjectOfType<BulletPool> ();
     }
 
     // Update is called once per frame
@@ -55,14 +55,12 @@ public class EnemyShooterController : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log(Time.deltaTime - lastShoot);
         if (Time.time - lastShoot > shootingCD)
         {
-            Debug.Log("ATIRANDO");
-            shootObject = Instantiate(shoot, this.transform.position, this.transform.rotation);
+			shootObject = bulletPool.Instantiate (transform.position);
             lastShoot = Time.time;
-            if(shootObject.transform.position.x < -15f)
-                Destroy(shootObject.gameObject);
+			if (shootObject.transform.position.x < -15f)
+				shootObject.gameObject.SetActive (false);
             //shootObject.GetComponent<BasicEnemyShootController>().Load(this);
             //lastShoot += Time.deltaTime;
         }

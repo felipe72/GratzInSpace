@@ -7,10 +7,13 @@ public class BasicEnemyShootController : MonoBehaviour {
 	public float slope = 0f;
 	PlayerController player=null;
 
+	float origLife;
 	public float timeLife;
 	public float speed;
 
 	void Start(){
+
+		origLife = timeLife;
 		StartCoroutine (destroyAfterSeconds ());
 	}
 
@@ -23,14 +26,17 @@ public class BasicEnemyShootController : MonoBehaviour {
 	IEnumerator destroyAfterSeconds(){
 		yield return new WaitForSeconds (timeLife);
 
-		Destroy (this.gameObject);
+		timeLife = origLife;
+		gameObject.SetActive (false);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
 		if(collider.gameObject.tag == "Player"){
 			PlayerController player = collider.gameObject.GetComponent<PlayerController> ();
 			player.Die ();
-			Destroy(this.gameObject);
+			timeLife = origLife;
+
+			this.gameObject.SetActive(false);
 		}
 	}
 }
