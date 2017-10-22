@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212190795985569970}
   - component: {fileID: 114610927548719742}
   - component: {fileID: 58707145294551806}
+  - component: {fileID: 95296842136754934}
   m_Layer: 0
   m_Name: ExplodeShoot
   m_TagString: Untagged
@@ -36,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790415947116532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2637756, y: -0.43165272, z: -0.018012187}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -2.2940059, y: 6.067828, z: -0.018012187}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,6 +58,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!95 &95296842136754934
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790415947116532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 398b9bea3669720428c3eaf52c438b49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114610927548719742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28019e0073ec7a342bf71bb10fe626a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.1
 --- !u!212 &212190795985569970
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -102,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a81de8655dd0004419ba6ceca32f428f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1aae6ab6cc104e24981741135dab1a06, type: 3}
   m_Color: {r: 0.9485294, g: 0.47128248, b: 0.1046172, a: 1}
   m_FlipX: 0
   m_FlipY: 0

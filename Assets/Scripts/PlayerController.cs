@@ -403,7 +403,7 @@ public class PlayerController : MonoBehaviour
 			shootObject.transform.localScale *= 5;
 			shootObject.GetComponent<ExplodeShoot>().speed = 0f;
 			currentAction = 1;
-			Destroy(shootObject, 3f);
+			Destroy(shootObject);
 			//this.rigidbody.AddForce(new Vector2(10f, 0));
 		}
 		

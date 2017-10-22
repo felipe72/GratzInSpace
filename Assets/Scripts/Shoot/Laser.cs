@@ -18,10 +18,10 @@ public class Laser : MonoBehaviour {
 
 			RaycastHit2D hit;
 			if(player.player1){
-				hit = Physics2D.Raycast (player.transform.position + player.shootPosition, Vector2.right, 10000, 1 << (LayerMask.NameToLayer ("Enemy") | 1 << LayerMask.NameToLayer ("Player2")));
+				hit = Physics2D.Raycast (player.transform.position + player.shootPosition, Vector2.right, 10000, (1 << (LayerMask.NameToLayer ("Enemy")) | (1 << LayerMask.NameToLayer ("Player2"))));
 			}
 			else{
-				hit = Physics2D.Raycast (player.transform.position + player.shootPosition, Vector2.right, 10000, 1 << (LayerMask.NameToLayer ("Enemy") | 1 << LayerMask.NameToLayer ("Player1")));	
+				hit = Physics2D.Raycast (player.transform.position + player.shootPosition, Vector2.right, 10000, (1 << (LayerMask.NameToLayer ("Enemy")) | (1 << LayerMask.NameToLayer ("Player1"))));	
 			}
 			if (hit) {
 				var size = transform.localScale;
