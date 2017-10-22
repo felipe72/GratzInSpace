@@ -20,12 +20,13 @@ public class EnemyController : MonoBehaviour {
 
 	bool goingBack;
 
-	Vector3 direction =  Vector3.left;
+	Vector3 direction;
 
 	Vector3[] positions;
-
+	Transform target;
 	void Start(){
 		child = GetComponentInChildren<Animator> ().GetComponent<SpriteRenderer>();
+		target = this.transform.Find("target");
 	}
 
 	// Update is called once per frame
@@ -42,17 +43,15 @@ public class EnemyController : MonoBehaviour {
 			} else if(turret){
 				if (!goingBack) {
 					child.transform.RotateAround (child.bounds.center, Vector3.forward, Time.deltaTime * 10);
-					direction = Quaternion.AngleAxis(Time.deltaTime * 10, Vector3.forward) * direction;
+					target.transform.RotateAround (child.bounds.center, Vector3.forward, Time.deltaTime * 10);
 				} else {
 					child.transform.RotateAround (child.bounds.center, Vector3.forward, Time.deltaTime * -10);
-
-					direction = Quaternion.AngleAxis(Time.deltaTime * -10, Vector3.forward) * direction;
+					target.transform.RotateAround (child.bounds.center, Vector3.forward, Time.deltaTime * -10);
 				}
 				if (!once) {
 					once = true;
-					Vector3 rot = child.transform.rotation.eulerAngles;
-					rot = new Vector3(rot.x, rot.y, rot.z-(0*Mathf.Deg2Rad));
-					BasicEnemyShootController a = Instantiate (bullet, transform.position,  Quaternion.Euler(rot)).GetComponent<BasicEnemyShootController>();
+					direction = target.position - child.transform.position;
+					BasicEnemyShootController a = Instantiate (bullet, transform.position + direction.normalized,  transform.rotation).GetComponent<BasicEnemyShootController>();
 					a.Load (direction);
 
 					StartCoroutine (cooldown ());
@@ -87,12 +86,6 @@ public class EnemyController : MonoBehaviour {
 		if(collider.gameObject.tag == "Player"){
 			PlayerController player = collider.gameObject.GetComponent<PlayerController> ();
 			player.Die ();
-		}
-	}
-
-	void OnDrawGizmosSelected(){
-		for (int i = 0; i < 2; i++) {
-			Gizmos.DrawSphere (positions + transform.position, .1f);
 		}
 	}
 }

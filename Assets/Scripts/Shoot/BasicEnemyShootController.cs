@@ -14,6 +14,8 @@ public class BasicEnemyShootController : MonoBehaviour {
 	public bool vertical;
 	public bool diagonal;
 
+	private Vector3 dif;
+
 	void Start(){
 
 		origLife = timeLife;
@@ -22,7 +24,8 @@ public class BasicEnemyShootController : MonoBehaviour {
 
 	void Update () {
 		if (diagonal) {
-			this.transform.position += dif * Time.deltaTime;
+			Vector2 nextPosition = new Vector2 (this.transform.position.x + speed * dif.x, this.transform.position.y + speed * dif.y);
+			this.transform.position = nextPosition;
 		} else {
 			if (!vertical) {
 				Vector2 nextPosition = new Vector2 (this.transform.position.x - speed, this.transform.position.y - slope);
@@ -42,11 +45,8 @@ public class BasicEnemyShootController : MonoBehaviour {
 		gameObject.SetActive (false);
 	}
 
-	Vector3 dif;
-
 	public void Load(Vector3 v){
-		dif = v - transform.position;
-		dif.Normalize ();
+		dif = v.normalized;
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
