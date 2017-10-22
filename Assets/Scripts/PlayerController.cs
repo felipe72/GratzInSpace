@@ -380,9 +380,7 @@ public class PlayerController : MonoBehaviour
 
 	public void Combo(int action){
 		if(action == 0){
-			Vector2 nextPosition = this.transform.position;
-			nextPosition.x += 1.5f;
-			shootObject = Instantiate (shoots[0], nextPosition, this.transform.rotation);
+			shootObject = Instantiate (shoots[0], this.transform.position + shootPosition, this.transform.rotation);
 			shootObject.GetComponent<BasicShootController> ().Load (this);
 			shootObject.transform.localScale *= 3f;
 		}
