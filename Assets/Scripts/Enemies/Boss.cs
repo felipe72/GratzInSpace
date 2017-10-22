@@ -97,9 +97,11 @@ public class Boss : MonoBehaviour {
 	}
 
 	public void Die(){
-		transform.DOShakePosition (10, 5f);
-		anim.SetTrigger ("die");
-		dead = true;
+		if (!dead) {
+			transform.DOShakePosition (10, 5f);
+			anim.SetTrigger ("die");
+			dead = true;
+		}
 	}
 
 	void OnDrawGizmosSelected(){
@@ -107,6 +109,8 @@ public class Boss : MonoBehaviour {
 	}
 
 	public void KillObj(){
+		FindObjectOfType<ScoreManager> ().AddScore (1000);
+
 		spawner.canSpawn = true;
 		FindObjectOfType<Paralax> ().Continue ();
 

@@ -60,12 +60,8 @@ public class LogoController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.K) || Input.GetKeyDown(KeyCode.F)) {
+		if (Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.F)) {
 			LoadingScreenManager.LoadScene (2);
-		}
-
-		if (Input.GetKeyDown (KeyCode.T)) {
-			PrintRank ();		
 		}
 	}
 }

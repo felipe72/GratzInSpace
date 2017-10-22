@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     public bool player1;
     GameManager gameManager;
     SpriteRenderer sr;
-    bool invul = true;
+    bool invul = false;
 	Animator anim;
 
 
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             	this.gameObject.layer = LayerMask.NameToLayer("Player2");
             }
 
-        StartCoroutine(CantDie());
+        
         combo1 = new KeySequenceController();
         combo2 = new KeySequenceController();
         keys = new List<KeyCode>();
@@ -104,7 +104,8 @@ public class PlayerController : MonoBehaviour
 		}
     }
 
-    IEnumerator CantDie()
+   
+	public IEnumerator CantDie()
     {
         yield return new WaitForSeconds(1f);
 
@@ -116,8 +117,8 @@ public class PlayerController : MonoBehaviour
     {
         if (currLifeRess >= 5)
         {
+			anim.SetTrigger ("endHelp");
             isActive = true;
-            sr.sprite = spriteAlive;
             currLifeRess = 0;
         }
         if (isActive)
@@ -289,9 +290,11 @@ public class PlayerController : MonoBehaviour
     }
     void Shoot(KeyCode key)
     {
+		KeyCode _key = key == KeyCode.K ? KeyCode.Joystick2Button0 : KeyCode.Joystick1Button0;
+
         if (laser)
         {
-            if (Input.GetKeyDown(key))
+			if (Input.GetKeyDown(_key) || Input.GetKeyDown(key))
             {
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 1;
@@ -299,14 +302,14 @@ public class PlayerController : MonoBehaviour
 				shootObject.GetComponent<Laser> ().Load (this);
 				lastShoot = Time.time;
             }
-            else if (Input.GetKeyUp(key))
+			else if (Input.GetKeyUp(_key) || Input.GetKeyUp(key))
             {
                 Destroy(shootObject);
             }
         }
         else if (explode)
         {
-            if (Input.GetKeyDown(key) && !exist)
+			if ((Input.GetKeyDown(_key) || Input.GetKeyDown(key)) && !exist)
             {
 				anim.SetTrigger ("shoot");
                 if (specialBarSlider.value < 100)
@@ -316,14 +319,14 @@ public class PlayerController : MonoBehaviour
 				lastShoot = Time.time;
 				exist = true;
             }
-            else if (Input.GetKeyDown(key) && shootObject)
+			else if ((Input.GetKeyDown(_key) || Input.GetKeyDown(key)) && shootObject)
             {
                 shootObject.GetComponent<ExplodeShoot>().Explode();
             }
         }
         else
         {
-            if (Input.GetKey(key) && Time.time - lastShoot > fireRate)
+			if ((Input.GetKey(_key) || Input.GetKeyDown(key)) && Time.time - lastShoot > fireRate)
             {
 				anim.SetTrigger ("shoot");
                 if (specialBarSlider.value < 100)
@@ -345,10 +348,12 @@ public class PlayerController : MonoBehaviour
     private void Dash(KeyCode k)
     {
 
+		KeyCode _key = k == KeyCode.K ? KeyCode.Joystick2Button0 : KeyCode.Joystick1Button0;
+
         switch (dashState)
         {
             case DashState.Ready:
-                var isDashKeyDown = Input.GetKeyDown(k);
+				var isDashKeyDown = Input.GetKeyDown(k) || Input.GetKey(_key);
                 if (isDashKeyDown)
                 {
                     float a, b;
@@ -432,18 +437,17 @@ public class PlayerController : MonoBehaviour
 			anim.SetTrigger ("help");
             //Destroy(gameObject);
 
-			/*foreach (var player in FindObjectsOfType<PlayerController>()) {
+			foreach (var player in FindObjectsOfType<PlayerController>()) {
 				if (player.isActive)
 					return;
 			}
 
-			FindObjectOfType<ScoreManager> ().End ();*/
+			FindObjectOfType<ScoreManager> ().End ();
         }
     }
 
     public void setRestoreLife()
     {
-		anim.SetTrigger ("endHelp");
         currLifeRess += 1;
         Debug.Log(currLifeRess);
     }

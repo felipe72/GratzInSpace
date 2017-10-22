@@ -76,6 +76,7 @@ public class EnemyShooterController : MonoBehaviour
 
     public void Die()
     {
+		FindObjectOfType<ScoreManager> ().AddScore (200);
         isDead = true;
         Destroy(gameObject, .2f);
     }

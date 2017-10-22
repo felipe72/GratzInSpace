@@ -117,4 +117,9 @@ public class EnemySpawnner : MonoBehaviour {
 		});
 
 	}
+
+	void OnDestroy(){
+		tween1.Kill ();
+		tween2.Kill ();
+	}
 }

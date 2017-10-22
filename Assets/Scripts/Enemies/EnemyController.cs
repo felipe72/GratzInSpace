@@ -80,6 +80,7 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void Die(){
+		FindObjectOfType<ScoreManager> ().AddScore (100);
 		isDead = true;
 		Destroy (gameObject, .2f);
 	}

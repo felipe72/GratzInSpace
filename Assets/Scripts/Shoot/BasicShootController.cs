@@ -46,8 +46,10 @@ public class BasicShootController : MonoBehaviour {
 			}
 			//Destroy(this.gameObject);
 		}
-		if(col.gameObject.tag == "Player" && !player.isActive){
-			player.setRestoreLife();
+
+		PlayerController _player = col.GetComponent<PlayerController> ();
+		if(_player && !_player.isActive && _player != player){
+			_player.setRestoreLife();
 		}
 		if(col.gameObject.tag == "Player" && col.gameObject != player.gameObject){
 			int combo = 0;

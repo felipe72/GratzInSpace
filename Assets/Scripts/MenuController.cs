@@ -13,10 +13,12 @@ public class MenuController : MonoBehaviour {
 	void Start(){
 		gameManager = FindObjectOfType<GameManager> ();
 		gameManager.started = false;
+		gameManager.player1 = false;
+		gameManager.player2 = false;
 	}
 
 	void Update(){
-		if (Input.GetKeyDown (KeyCode.F)) {
+		if (Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.F)) {
 			if (gameManager.player1) {
 				LoadingScreenManager.LoadScene (3);
 			} else {
@@ -25,7 +27,7 @@ public class MenuController : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.K)) {
+		if (Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.K)) {
 			if (gameManager.player2) {
 				LoadingScreenManager.LoadScene (3);
 			} else {

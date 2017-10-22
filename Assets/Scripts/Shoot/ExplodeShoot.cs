@@ -34,6 +34,12 @@ public class ExplodeShoot : MonoBehaviour {
 				boss.ReceiveDamage (50);
 			}
 		}
+
+		PlayerController _player = collider.GetComponent<PlayerController> ();
+		if(_player && !_player.isActive && _player != player){
+			_player.setRestoreLife();
+		}
+
 		if(collider.gameObject.tag == "Player" && collider.gameObject != player.gameObject){
 			collider.gameObject.GetComponent<PlayerController> ().Combo(3);
 			player.exist = false;

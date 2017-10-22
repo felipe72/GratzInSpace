@@ -17,18 +17,24 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad (gameObject);
+		Cursor.visible = false;
 	}
 
 	void Update(){
+		if (Input.GetKeyDown (KeyCode.JoystickButton2)) {
+			Application.Quit ();
+		}
+
 		if (started) {
-			if (Input.GetKeyDown (KeyCode.F) && !player1) {
+			if ((Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.F))&& !player1) {
 				player1 = true;
 				player.gameObject.SetActive (true);
 				player.player1 = true;
-			} else if (Input.GetKeyDown (KeyCode.K) && !player2) {
+				StartCoroutine(player.CantDie());
+			} else if ((Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.K)) && !player2) {
 				player2 = true;
 				player.gameObject.SetActive (true);
-				player.player1 = false;
+				StartCoroutine(player.CantDie());
 			}
 		}
 	}

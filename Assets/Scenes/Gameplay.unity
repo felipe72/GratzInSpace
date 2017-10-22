@@ -1976,6 +1976,14 @@ Prefab:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4240040440245158, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240040440245158, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed0c254abbf40b6489e3c9b637851856, type: 2}
   m_IsPrefabParent: 0
@@ -2221,7 +2229,7 @@ MonoBehaviour:
   - {fileID: 1580915272592658, guid: ed9a4d6eb71630040a6bc128d6557adf, type: 2}
   - {fileID: 1580915272592658, guid: ed9a4d6eb71630040a6bc128d6557adf, type: 2}
   - {fileID: 1748519541622746, guid: a3540e8ef1a85164bbd5a8a3deefbd1a, type: 2}
-  canSpawn: 0
+  canSpawn: 1
 --- !u!1 &1438369473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3010,6 +3018,15 @@ Prefab:
       propertyPath: specialBarSlider
       value: 
       objectReference: {fileID: 1336373551}
+    - target: {fileID: 4134101271891450, guid: d92f4ac5bfc597b47b8749eab38c1ae0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 212532093793668844, guid: d92f4ac5bfc597b47b8749eab38c1ae0,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d92f4ac5bfc597b47b8749eab38c1ae0, type: 2}
   m_IsPrefabParent: 0
@@ -3176,7 +3193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2086590231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3184,7 +3201,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2086590230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -570.0999, y: -530, z: 0}
+  m_LocalPosition: {x: 777, y: 384, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 115056128}
@@ -3192,7 +3209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -570.0999, y: -530}
+  m_AnchoredPosition: {x: 777, y: 384}
   m_SizeDelta: {x: 749.9, y: 218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086590232
@@ -3215,7 +3232,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6663736be72590b4187f1fcc5b67f9d0, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0

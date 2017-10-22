@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-	int IScore = 3560;
+	int IScore = 0;
 
 	public Text score;
 
@@ -39,5 +39,11 @@ public class ScoreManager : MonoBehaviour {
 
 	void UpdateScore(){
 		score.text = "Score: <size=80>" + IScore.ToString () + "</size>";
+	}
+
+	public void AddScore(int amount){
+		IScore += amount;
+
+		UpdateScore ();
 	}
 }
