@@ -33,7 +33,12 @@ public class BasicShootController : MonoBehaviour {
 		}
 		if(collider.gameObject.tag == "Enemy"){
 			EnemyShooterController enemy = collider.gameObject.GetComponent<EnemyShooterController> ();
-			enemy.Die ();
+			if (enemy) {
+				enemy.Die ();
+			} else {
+				EnemyController _enemy = collider.gameObject.GetComponent<EnemyController> ();
+				_enemy.Die ();
+			}
 			//Destroy(this.gameObject);
 		}
 		if(collider.gameObject.tag == "Player" && !player.isActive){

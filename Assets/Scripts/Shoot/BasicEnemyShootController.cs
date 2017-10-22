@@ -11,6 +11,9 @@ public class BasicEnemyShootController : MonoBehaviour {
 	public float timeLife;
 	public float speed;
 
+	public bool vertical;
+	public bool diagonal;
+
 	void Start(){
 
 		origLife = timeLife;
@@ -18,9 +21,18 @@ public class BasicEnemyShootController : MonoBehaviour {
 	}
 
 	void Update () {
-		
-		Vector2 nextPosition = new Vector2(this.transform.position.x - speed, this.transform.position.y - slope);
-		this.transform.position = nextPosition;
+		if (diagonal) {
+			this.transform.position += dif * Time.deltaTime;
+		} else {
+			if (!vertical) {
+				Vector2 nextPosition = new Vector2 (this.transform.position.x - speed, this.transform.position.y - slope);
+				this.transform.position = nextPosition;
+			} else {
+				Vector2 nextPosition = new Vector2 (this.transform.position.x, this.transform.position.y + speed);
+				this.transform.position = nextPosition;
+
+			}
+		}
 	}
 
 	IEnumerator destroyAfterSeconds(){
@@ -28,6 +40,13 @@ public class BasicEnemyShootController : MonoBehaviour {
 
 		timeLife = origLife;
 		gameObject.SetActive (false);
+	}
+
+	Vector3 dif;
+
+	public void Load(Vector3 v){
+		dif = v - transform.position;
+		dif.Normalize ();
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
