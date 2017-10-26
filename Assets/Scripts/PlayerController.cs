@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool shotgun = false;
     public bool exist = false;
     GameObject shootObject;
+    GameObject laserObject;
     private KeySequenceController combo1;
     private KeySequenceController combo2;
     private List<KeyCode> keys;
@@ -292,6 +293,9 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            if(!laser && laserObject){
+            	Destroy(laserObject);
+            }
         }
 
 
@@ -306,13 +310,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (specialBarSlider.value < 100)
                     specialBarSlider.value += 1;
-				shootObject = Instantiate (shoot, this.transform.position + shootPosition, this.transform.rotation);
-				shootObject.GetComponent<Laser> ().Load (this);
+				laserObject = Instantiate (shoot, this.transform.position + shootPosition, this.transform.rotation);
+				laserObject.GetComponent<Laser> ().Load (this);
 				lastShoot = Time.time;
             }
 			else if (Input.GetKeyUp(_key) || Input.GetKeyUp(key))
             {
-                Destroy(shootObject);
+                Destroy(laserObject);
             }
         }
         else if (explode)
