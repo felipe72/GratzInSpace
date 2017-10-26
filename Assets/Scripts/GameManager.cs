@@ -14,9 +14,20 @@ public class GameManager : MonoBehaviour {
 
 	PlayerController player;
 
+	private static GameManager _instance;
+
+	void Awake () {
+		DontDestroyOnLoad (gameObject);
+
+		if (!_instance) {
+			_instance = this;
+		} else {
+			Destroy (this.gameObject);
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (gameObject);
 		Cursor.visible = false;
 	}
 

@@ -27,8 +27,7 @@ public class Boss : MonoBehaviour {
 	public void Initialize(){
 		anim.SetTrigger ("start");
 		childAnim.SetTrigger ("open");
-		FindObjectOfType<MusicController> ().GetComponent<AudioSource> ().clip = meuclipe;
-		FindObjectOfType<MusicController> ().GetComponent<AudioSource> ().Play ();
+		FindObjectOfType<MusicController> ().Play (MusicType.Level2);
 		StartCoroutine (cooldown ());
 	}
 

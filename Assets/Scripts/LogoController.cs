@@ -10,7 +10,7 @@ public class LogoController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		FindObjectOfType<MusicController> ().Play (MusicType.Level1);
 
 		if (PlayerPrefs.GetInt ("once", 0) == 0) {
 			PlayerPrefs.SetInt ("once", 1);

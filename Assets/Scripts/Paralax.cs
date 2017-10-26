@@ -44,7 +44,7 @@ public class Paralax : MonoBehaviour {
 	}
 
 	IEnumerator Spawn(){
-		yield return new WaitForSeconds (20);
+		yield return new WaitForSeconds (2);
 
 		bossGo = Instantiate (boss, ship [lastShip].position, Quaternion.identity).GetComponent<Boss>();
 		bossGo.transform.SetParent (ship [lastShip]);
