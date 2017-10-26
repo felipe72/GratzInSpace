@@ -44,7 +44,7 @@ public class Paralax : MonoBehaviour {
 	}
 
 	IEnumerator Spawn(){
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (20);
 
 		bossGo = Instantiate (boss, ship [lastShip].position, Quaternion.identity).GetComponent<Boss>();
 		bossGo.transform.SetParent (ship [lastShip]);
@@ -62,7 +62,8 @@ public class Paralax : MonoBehaviour {
 				Vector2 nextPosition = new Vector2 (x.go.rectTransform.localPosition.x + x.speed, x.go.rectTransform.localPosition.y);
 				x.go.rectTransform.localPosition = nextPosition;
 
-				if (bossGo && bossGo.transform.position.x < 2f && !once) {
+
+				if (bossGo && bossGo.transform.position.x < 10.5f && !once) {
 					Stop ();
 					once = true;
 				}
